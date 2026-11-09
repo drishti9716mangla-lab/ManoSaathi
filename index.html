@@ -398,64 +398,8 @@ html.dark #section-home .ms-tile p{color:#c3d3df!important}
                         <p id="wellSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Engaging games and mindful tools for relaxation and brain health.</p>
                     </div>
 
-                    <!-- Game Selector Buttons -->
-                    <div class="flex flex-wrap gap-2">
-                        <button id="gBtn-memory" onclick="switchGame('memory')" class="py-2 px-3 rounded-xl text-xs font-bold bg-primary-500 text-white shadow">1. Memory Game</button>
-                        <button id="gBtn-hydration" onclick="switchGame('hydration')" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">2. Hydration Game</button>
-                        <button id="gBtn-colour" onclick="switchGame('colour')" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">3. Colour Game</button>
-                        <button id="gBtn-thought" onclick="switchGame('thought')" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">4. Good Thought</button>
-                    </div>
-
-                    <!-- Game 1: Memory Game -->
-                    <div id="game-memory" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 id="mTitle" class="font-bold text-sm">🧠 Memory Concentration Game</h3>
-                                <p id="mDesc" class="text-xs text-slate-500 dark:text-slate-400">Match pairs of health icons to train cognitive focus.</p>
-                            </div>
-                            <button onclick="initMemoryGame()" id="mRestart" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-slate-200 transition">Restart Game</button>
-                        </div>
-                        <div id="memoryStatus" class="text-xs font-bold text-primary-600 dark:text-primary-400">Find all matching pairs!</div>
-                        <div id="memoryGrid" class="grid grid-cols-4 gap-3"></div>
-                    </div>
-
-                    <!-- Game 2: Hydration Game -->
-                    <div id="game-hydration" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm hidden">
-                        <div>
-                            <h3 id="hTitle" class="font-bold text-sm">💧 Hydration Challenge Game</h3>
-                            <p id="hDesc" class="text-xs text-slate-500 dark:text-slate-400">Drink 8 glasses of water today! Click each glass as you drink.</p>
-                        </div>
-                        <div id="hydrationStatus" class="text-xs font-bold text-blue-500">Progress: 0 / 8 Glasses</div>
-                        <div id="hydrationGameIcons" class="flex flex-wrap gap-4 py-2"></div>
-                        <button onclick="drinkWaterGame()" id="hBtn" class="py-2.5 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl text-xs font-bold transition shadow-md">Drink a Glass 💧</button>
-                    </div>
-
-                    <!-- Game 3: Colour Reflex Game -->
-                    <div id="game-colour" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm hidden">
-                        <div>
-                            <h3 id="cTitle" class="font-bold text-sm">🎨 Colour Focus & Reaction Game</h3>
-                            <p id="cDesc" class="text-xs text-slate-500 dark:text-slate-400">Click the matching color box quickly to test reflexes!</p>
-                        </div>
-                        <div id="targetColourBox" class="w-24 h-24 mx-auto rounded-xl shadow-inner bg-red-500 transition"></div>
-                        <div id="colourScore" class="text-xs font-bold text-center">Score: 0</div>
-                        <div class="flex justify-center space-x-3 pt-2">
-                            <button onclick="checkColourGame('red')" id="cRed" class="px-4 py-2 rounded-xl bg-red-500 text-white text-xs font-bold">Red</button>
-                            <button onclick="checkColourGame('blue')" id="cBlue" class="px-4 py-2 rounded-xl bg-blue-500 text-white text-xs font-bold">Blue</button>
-                            <button onclick="checkColourGame('green')" id="cGreen" class="px-4 py-2 rounded-xl bg-green-500 text-white text-xs font-bold">Green</button>
-                        </div>
-                    </div>
-
-                    <!-- Game 4: Good Thought Jar -->
-                    <div id="game-thought" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm hidden">
-                        <div>
-                            <h3 id="tTitle" class="font-bold text-sm">✨ Good Thought Jar</h3>
-                            <p id="tDesc" class="text-xs text-slate-500 dark:text-slate-400">Draw a positive mental affirmation for instant mental upliftment.</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-primary-50 dark:bg-primary-950/40 border border-primary-200 dark:border-primary-900 text-center">
-                            <p id="goodThoughtText" class="text-sm font-semibold text-primary-700 dark:text-primary-300 italic">"Every deep breath brings peace and radiant health."</p>
-                        </div>
-                        <button onclick="drawGoodThought()" id="tBtn" class="w-full py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl text-xs font-bold transition shadow-md">Draw New Thought ✨</button>
-                    </div>
+                    <div id="cpRoot"></div>
+                    
                 </div>
             </section>
 
@@ -1593,7 +1537,7 @@ function switchGame(gameName) {
 }
 
 // Start the games. Each one is wrapped separately so one failure cannot stop the others.
-function startGames() {
+function startGames() { return; // old games removed
     [['memoryGrid', 'initMemoryGame'], ['hydrationGameIcons', 'initHydrationGame'], ['', 'drawGoodThought']].forEach(([gridId, fnName]) => {
         try {
             const grid = gridId ? document.getElementById(gridId) : null;
@@ -2286,6 +2230,96 @@ buildScreenerFollowups=function(){
 
 const msOldStartNewChat=startNewChat;
 startNewChat=function(){msConversation=[];if(typeof msOldStartNewChat==='function')msOldStartNewChat();};
+</script>
+
+<script>
+/* ===== Calm & Play: 10 games x 10 levels ===== */
+const cp={g:null,L:0,s:'hub'};
+const T=(e,h)=>currentLang==='hi'?h:e;
+const cpP=()=>readLocal('ms_cp',{});
+const cpSave=p=>{try{localStorage.setItem('ms_cp',JSON.stringify(p))}catch(e){}};
+const shuf=a=>a.slice().sort(()=>Math.random()-.5), rnd=n=>Math.floor(Math.random()*n);
+function mk(p,t,c,x,f){const e=document.createElement(t);e.className=c||'';if(x!=null)e.textContent=x;if(f)e.onclick=f;p.appendChild(e);return e}
+const BOX='bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl';
+const BTN='px-5 py-3 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-bold text-sm';
+const SQ='aspect-square rounded-lg bg-sky-50 dark:bg-slate-800 text-2xl';
+
+function gMemory(s,L,w){const E=['🌸','🌿','🌙','☀️','🦋','🐚','🍃','⭐','🌼','🪷','🐦','🍀'],n=2+L,a=E.slice(0,n);let op=[],ok=0,lock=false;const g=mk(s,'div','grid grid-cols-4 gap-2 max-w-sm mx-auto');
+shuf([...a,...a]).forEach(v=>{const b=mk(g,'button','h-16 rounded-xl text-2xl bg-sky-100 dark:bg-slate-800 border border-sky-200 dark:border-slate-700','?');b.onclick=()=>{if(lock||b.dataset.o)return;b.textContent=v;b.dataset.o=1;op.push([b,v]);if(op.length==2){const[[b1,v1],[b2,v2]]=op;if(v1==v2){ok++;op=[];b1.style.opacity=b2.style.opacity=.5;if(ok==n)setTimeout(w,500)}else{lock=true;setTimeout(()=>{[b1,b2].forEach(x=>{x.textContent='?';delete x.dataset.o});op=[];lock=false},700)}}}})}
+
+function gColour(s,L,w){const k=Math.min(7,2+Math.ceil((L+1)/2)),d=Math.max(4,26-L*2.2);let r=0;const m=mk(s,'p','text-center text-sm mb-3'),g=mk(s,'div','grid gap-2 max-w-sm mx-auto');g.style.gridTemplateColumns=`repeat(${k},1fr)`;
+const go=()=>{m.textContent=`${r+1} / 3`;g.innerHTML='';const h=rnd(360),o=rnd(k*k);for(let i=0;i<k*k;i++){const b=mk(g,'button','aspect-square rounded-lg');b.style.background=`hsl(${h},60%,${i==o?55+d:55}%)`;b.onclick=()=>{if(i==o){if(++r==3)w();else go()}}}};go()}
+
+function gSeq(s,L,w,T){const C=['bg-rose-400','bg-sky-400','bg-emerald-400','bg-amber-300'],q=Array.from({length:L+2},()=>rnd(4));let p=0,ok=false;const m=mk(s,'p','text-center text-sm mb-3'),g=mk(s,'div','grid grid-cols-2 gap-3 max-w-xs mx-auto');
+const fl=(i,t)=>{P[i].style.opacity=1;setTimeout(()=>P[i].style.opacity='',t)};
+const P=C.map((c,i)=>mk(g,'button','h-24 rounded-2xl opacity-50 '+c,null,()=>{if(!ok)return;fl(i,150);if(i==q[p]){if(++p==q.length){ok=false;w()}}else{ok=false;m.textContent=T('Not quite. Watch again.','थोड़ा चूके। फिर से देखें।');setTimeout(play,900)}}));
+function play(){ok=false;p=0;m.textContent=T('Watch...','देखें...');q.forEach((v,i)=>setTimeout(()=>fl(v,450),800+i*700));setTimeout(()=>{ok=true;m.textContent=T('Your turn','आपकी बारी')},800+q.length*700)}play()}
+
+function gHyd(s,L,w,T){const n=Math.min(12,L+3),mx=Math.min(4,1+Math.ceil(L/3)),pl=Array.from({length:n},()=>({n:1+rnd(mx),d:0}));const m=mk(s,'p','text-center text-sm mb-3',T('Water each plant the drops it needs.','हर पौधे को उतनी बूँदें दें जितनी चाहिए।')),g=mk(s,'div','grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-md mx-auto');
+const dr=()=>{g.innerHTML='';pl.forEach(p=>{const b=mk(g,'button','p-3 rounded-2xl border border-emerald-200 dark:border-slate-700 bg-emerald-50 dark:bg-slate-800 text-center');b.innerHTML=`<div class="text-3xl">${p.d==p.n?'🌸':'🌱'}</div><div class="text-xs mt-1">💧 ${p.d} / ${p.n}</div>`;b.onclick=()=>{if(p.d>=p.n){p.d=0;m.textContent=T('Too much water! It dried out. Try again.','बहुत ज़्यादा पानी! फिर से कोशिश करें।')}else p.d++;dr();if(pl.every(x=>x.d==x.n))w()}})};dr()}
+
+function gSpot(s,L,w){const P=[['🙂','🙃'],['😊','☺️'],['🌼','🌻'],['🍀','☘️'],['🌙','🌛'],['⭐','🌟'],['🐢','🐊'],['🔔','🛎️'],['🍓','🍒'],['🐶','🐕']],k=Math.min(8,3+Math.ceil(L/2));let r=0;const m=mk(s,'p','text-center text-sm mb-3'),g=mk(s,'div','grid gap-1 max-w-sm mx-auto');g.style.gridTemplateColumns=`repeat(${k},1fr)`;
+const go=()=>{m.textContent=`${r+1} / 3`;g.innerHTML='';const p=P[rnd(P.length)],o=rnd(k*k);for(let i=0;i<k*k;i++)mk(g,'button',SQ,p[i==o?1:0],()=>{if(i==o){if(++r==3)w();else go()}})};go()}
+
+function gBub(s,L,w,T){const z=6,nc=3+(L>4)+(L>8),C=['bg-rose-400','bg-sky-400','bg-emerald-400','bg-amber-300','bg-violet-400'],tg=10+L*5;let B=Array.from({length:z*z},()=>rnd(nc)),pp=0;const m=mk(s,'p','text-center text-sm mb-3'),g=mk(s,'div','grid grid-cols-6 gap-2 max-w-xs mx-auto');
+const dr=()=>{m.textContent=T(`Popped ${pp} / ${tg}`,`फूटे ${pp} / ${tg}`);g.innerHTML='';B.forEach((c,i)=>mk(g,'button','aspect-square rounded-full '+C[c],null,()=>pop(i)))};
+const pop=i=>{const c=B[i],q=[i],S=new Set(q);while(q.length){const j=q.pop(),x=j%z,y=Math.floor(j/z);[[x-1,y],[x+1,y],[x,y-1],[x,y+1]].forEach(([a,b])=>{const k=b*z+a;if(a>=0&&b>=0&&a<z&&b<z&&!S.has(k)&&B[k]==c){S.add(k);q.push(k)}})}if(S.size<2)return;S.forEach(k=>B[k]=rnd(nc));pp+=S.size;dr();if(pp>=tg)w()};dr()}
+
+function gMaze(s,L,w){const z=4+L,W=Array.from({length:z},()=>Array.from({length:z},()=>[1,1,1,1])),V=new Set(['0,0']),st=[[0,0]],D=[[0,-1,0,2],[1,0,1,3],[0,1,2,0],[-1,0,3,1]];
+while(st.length){const[x,y]=st[st.length-1],nb=D.filter(([dx,dy])=>{const a=x+dx,b=y+dy;return a>=0&&b>=0&&a<z&&b<z&&!V.has(a+','+b)});if(!nb.length){st.pop();continue}const[dx,dy,i,j]=nb[rnd(nb.length)];W[y][x][i]=0;W[y+dy][x+dx][j]=0;V.add((x+dx)+','+(y+dy));st.push([x+dx,y+dy])}
+let px=0,py=0;const c=Math.min(32,Math.floor(320/z)),bd=a=>a?'2px solid #64748b':'0',mz=mk(s,'div','mx-auto');mz.style.cssText=`display:grid;grid-template-columns:repeat(${z},${c}px);width:${c*z}px`;
+const dr=()=>{let h='';for(let y=0;y<z;y++)for(let x=0;x<z;x++){const a=W[y][x];h+=`<div style="width:${c}px;height:${c}px;border-top:${bd(a[0])};border-right:${bd(a[1])};border-bottom:${bd(a[2])};border-left:${bd(a[3])};display:flex;align-items:center;justify-content:center;font-size:${c*.6}px">${x==px&&y==py?'🟢':x==z-1&&y==z-1?'🏁':''}</div>`}mz.innerHTML=h};
+const mv=(dx,dy,i)=>{if(W[py][px][i])return;px+=dx;py+=dy;dr();if(px==z-1&&py==z-1)setTimeout(w,300)};
+const pad=mk(s,'div','grid grid-cols-3 gap-2 w-40 mx-auto mt-4');[['',0,0,-1,0],['↑',1,0,-1,0],['',0,0,0,0],['←',1,-1,0,3],['↓',1,0,1,2],['→',1,1,0,1]].forEach(([t,on,dx,dy,i])=>{const b=mk(pad,'button',on?'h-12 rounded-xl bg-sky-100 dark:bg-slate-800 font-bold':'',t||null,on?()=>mv(dx,dy,i):null)});dr()}
+
+function gWord(s,L,w,T){const WD=[['JOY','खुशी'],['CALM','शांति'],['HOPE','आशा'],['KIND','दया'],['LOVE','प्यार'],['SMILE','मुस्कान'],['PEACE','सुकून'],['BRAVE','साहस'],['GROW','विकास'],['TRUST','भरोसा'],['LIGHT','रोशनी'],['HEAL','उपचार']],z=6+Math.floor(L/3),G=Array.from({length:z},()=>Array(z).fill('')),pl=[];
+shuf(WD).filter(x=>x[0].length<=z).slice(0,2+Math.ceil(L/2)).forEach(wd=>{const x=wd[0];for(let t=0;t<200;t++){const v=Math.random()<.5,dx=v?0:1,dy=v?1:0,X=rnd(z-dx*(x.length-1)),Y=rnd(z-dy*(x.length-1));if([...x].every((c,i)=>{const q=G[Y+dy*i][X+dx*i];return !q||q==c})){[...x].forEach((c,i)=>G[Y+dy*i][X+dx*i]=c);pl.push(wd);break}}});
+G.forEach(r=>r.forEach((c,i)=>{if(!c)r[i]='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[rnd(26)]}));
+const f=new Set(),lst=mk(s,'p','text-center text-sm mb-3'),g=mk(s,'div','grid gap-1 max-w-xs mx-auto');g.style.gridTemplateColumns=`repeat(${z},1fr)`;let a=null;const B=[];
+const ls=()=>{lst.innerHTML=pl.map(p=>`<span class="inline-block mx-1 ${f.has(p[0])?'line-through opacity-50':'font-semibold'}">${p[0]} <span class="text-xs">(${p[1]})</span></span>`).join('')};
+G.forEach((r,y)=>r.forEach((c,x)=>{const b=mk(g,'button','aspect-square rounded-md bg-sky-50 dark:bg-slate-800 font-bold text-sm',c);B[y*z+x]=b;b.onclick=()=>{if(!a){a=[y,x];b.style.outline='2px solid #0E6EB5';return}const[y0,x0]=a;a=null;B.forEach(e=>e.style.outline='');if(y0!=y&&x0!=x)return;const n=Math.max(Math.abs(y-y0),Math.abs(x-x0)),sy=Math.sign(y-y0),sx=Math.sign(x-x0),cs=[];for(let i=0;i<=n;i++)cs.push((y0+sy*i)*z+x0+sx*i);const str=cs.map(i=>B[i].textContent).join(''),hit=pl.find(p=>p[0]==str||p[0]==[...str].reverse().join(''));if(hit&&!f.has(hit[0])){f.add(hit[0]);cs.forEach(i=>B[i].style.background='#86efac');ls();if(f.size==pl.length)setTimeout(w,400)}}}));ls()}
+
+function gStar(s,L,w){const n=L+3,cs=shuf([...Array(64).keys()]).slice(0,n).map(i=>[(i%8)*40+20,Math.floor(i/8)*40+20]);let k=0;const sv=mk(s,'div','mx-auto');sv.style.maxWidth='340px';
+const dr=()=>{let h='<svg viewBox="0 0 320 320" class="w-full rounded-2xl bg-slate-900">';for(let i=1;i<k;i++)h+=`<line x1="${cs[i-1][0]}" y1="${cs[i-1][1]}" x2="${cs[i][0]}" y2="${cs[i][1]}" stroke="#fde68a" stroke-width="2"/>`;cs.forEach((p,i)=>{h+=`<g data-i="${i}" style="cursor:pointer"><circle cx="${p[0]}" cy="${p[1]}" r="14" fill="${i<k?'#fde68a':'#334155'}"/><text x="${p[0]}" y="${p[1]+5}" text-anchor="middle" font-size="14" font-weight="700" fill="${i<k?'#1e293b':'#e2e8f0'}">${i+1}</text></g>`});sv.innerHTML=h+'</svg>'};
+sv.onclick=e=>{const g=e.target.closest('[data-i]');if(g&&+g.dataset.i==k){k++;dr();if(k==n)setTimeout(w,500)}};dr()}
+
+const SC=[
+['You wake up feeling low. What helps first?','आप उदास मन से उठते हैं। सबसे पहले क्या मदद करेगा?','Take three slow breaths','तीन गहरी साँसें लें','Hide under the blanket all day','दिन भर चादर में छिपे रहें','Tell yourself you are a failure','खुद को नाकाम कहें'],
+['A friend cancels plans and you feel hurt.','एक दोस्त ने प्लान रद्द कर दिया और आपको बुरा लगा।','Tell them kindly how you feel','उन्हें प्यार से अपनी बात बताएँ','Stop talking to them forever','उनसे हमेशा के लिए बात बंद कर दें','Pretend nothing matters','दिखावा करें कि कुछ फ़र्क़ नहीं पड़ता'],
+['Exams are close and you feel panicked.','परीक्षा पास है और आप घबरा रहे हैं।','Break study into small parts','पढ़ाई को छोटे हिस्सों में बाँटें','Skip sleep and study all night','रात भर बिना सोए पढ़ें','Give up completely','पूरी तरह हार मान लें'],
+['You made a mistake at work or school.','आपसे काम या पढ़ाई में गलती हो गई।','Learn from it and move on','उससे सीखें और आगे बढ़ें','Blame yourself for days','कई दिन खुद को दोष दें','Hide it from everyone','सबसे छिपा लें'],
+['You cannot sleep at night.','रात को आपको नींद नहीं आ रही।','Put the phone away and relax','फ़ोन दूर रखें और आराम करें','Drink lots of coffee','खूब कॉफ़ी पिएँ','Lie awake angry at yourself','खुद पर गुस्सा करते जागते रहें'],
+['Someone shares a problem with you.','कोई आपसे अपनी परेशानी बताता है।','Listen kindly without judging','बिना जज किए प्यार से सुनें','Change the subject','बात बदल दें','Tell them to stop being sad','कहें कि उदास होना बंद करो'],
+['You feel overwhelmed by too many tasks.','बहुत सारे काम देखकर आप घबरा गए हैं।','Pick one small task first','पहले एक छोटा काम चुनें','Do nothing and feel guilty','कुछ न करें और दोषी महसूस करें','Do everything at once','सब कुछ एक साथ करें'],
+['Someone says something unkind about you.','कोई आपके बारे में कुछ बुरा कहता है।','Pause, breathe, then reply calmly','रुकें, साँस लें, फिर शांति से जवाब दें','Shout back','चिल्लाकर जवाब दें','Believe every word','हर शब्द सच मान लें'],
+['You feel lonely this evening.','आज शाम आप अकेलापन महसूस कर रहे हैं।','Call or message someone you trust','किसी भरोसेमंद को फ़ोन या मैसेज करें','Shut everyone out','सबसे दूर हो जाएँ','Think nobody cares','सोचें कि किसी को परवाह नहीं'],
+['You have felt heavy and hopeless for days.','कई दिनों से आप बहुत भारी और निराश महसूस कर रहे हैं।','Reach out to a doctor or Tele-MANAS 14416','डॉक्टर या टेली-मानस 14416 से संपर्क करें','Keep it hidden and wait','इसे छिपाकर इंतज़ार करें','Decide nothing will help','मान लें कि कुछ मदद नहीं करेगा']];
+function gAdv(s,L,w,T){const c=SC[L-1],i=currentLang==='hi'?1:0;mk(s,'p','text-center font-semibold mb-4',c[i]);const m=mk(s,'p','text-center text-sm mb-3 min-h-[1.5rem]'),g=mk(s,'div','space-y-2 max-w-md mx-auto');
+shuf([2,4,6]).forEach(k=>mk(g,'button','w-full text-left p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-sky-50 dark:bg-slate-800 text-sm',c[k+i],()=>{if(k==2){m.textContent=T('Kind and caring. Well done.','समझदारी भरा और दयालु चुनाव। शाबाश।');setTimeout(w,900)}else m.textContent=T('That may not help you feel better. Try another choice.','इससे शायद आपको बेहतर महसूस न हो। कोई और विकल्प चुनें।')}))}
+
+const G=[
+['memory','🧠',['Memory Master','मेमोरी मास्टर'],['Match pairs of cards','कार्ड के जोड़े मिलाएँ'],['Flip two cards. Match all pairs.','दो कार्ड पलटें। सभी जोड़े मिलाएँ।'],gMemory],
+['colour','🎨',['Colour Quest','कलर क्वेस्ट'],['Spot the odd shade','अलग रंग पहचानें'],['Tap the tile that is a slightly different shade, 3 times.','थोड़े अलग रंग वाली टाइल पर 3 बार टैप करें।'],gColour],
+['seq','🎵',['Brain Sequence','ब्रेन सीक्वेंस'],['Repeat the pattern','पैटर्न दोहराएँ'],['Watch the lights, then repeat them in order.','रोशनी देखें, फिर उसी क्रम में दोहराएँ।'],gSeq],
+['hyd','🌱',['Hydration Garden','हाइड्रेशन गार्डन'],['Water your plants','अपने पौधों को पानी दें'],['Tap a plant to give a drop. Do not overwater.','पौधे पर टैप करके बूँद दें। ज़्यादा पानी न दें।'],gHyd],
+['spot','🔍',['Spot It!','स्पॉट इट!'],['Find what is different','अलग चीज़ खोजें'],['Find the one different picture, 3 times.','अलग तस्वीर 3 बार खोजें।'],gSpot],
+['bub','🫧',['Bubble Blast','बबल ब्लास्ट'],['Pop matching bubbles','एक जैसे बबल फोड़ें'],['Tap a group of 2 or more same-colour bubbles.','एक रंग के 2 या ज़्यादा बबल के समूह पर टैप करें।'],gBub],
+['maze','🧭',['Mind Maze','माइंड मेज़'],['Find your way out','बाहर का रास्ता खोजें'],['Use the arrows to reach the flag.','तीर बटनों से झंडे तक पहुँचें।'],gMaze],
+['word','💬',['Positive Word Hunt','पॉज़िटिव वर्ड हंट'],['Find kind words','अच्छे शब्द खोजें'],['Tap the first and last letter of each word.','हर शब्द का पहला और आखिरी अक्षर टैप करें।'],gWord],
+['star','✨',['Calm Constellation','काम कॉन्स्टेलेशन'],['Join stars into shapes','तारों को जोड़ें'],['Tap the stars in number order.','तारों को नंबर के क्रम में टैप करें।'],gStar],
+['adv','📖',['Emotional Adventure','इमोशनल एडवेंचर'],['Choose your own path','अपना रास्ता चुनें'],['Read each moment and choose the kindest response.','हर पल को पढ़ें और सबसे दयालु जवाब चुनें।'],gAdv]];
+
+function cpRender(){const r=document.getElementById('cpRoot');if(!r)return;r.innerHTML='';const P=cpP(),hi=currentLang==='hi',nm=g=>g[2][hi?1:0];
+if(cp.s=='hub'){const tot=G.reduce((a,g)=>a+(P[g[0]]||0),0);const h=mk(r,'div','flex flex-wrap justify-between items-end gap-3 mb-4');const t=mk(h,'div');mk(t,'h3','text-xl font-bold','Calm & Play');mk(t,'p','text-sm text-slate-500',T('10 games, 10 levels each. No timers, no pressure.','10 खेल, हर खेल में 10 स्तर। कोई टाइमर नहीं, कोई दबाव नहीं।'));mk(h,'div',BOX+' px-4 py-2 font-bold text-sm',T(`${tot} / 100 levels cleared`,`${tot} / 100 स्तर पूरे`));
+const g=mk(r,'div','grid grid-cols-2 lg:grid-cols-5 gap-3 mb-6');G.forEach(x=>{const c=P[x[0]]||0,b=mk(g,'button',BOX+' p-4 text-left space-y-2 hover:shadow-md',null,()=>{cp.g=x;cp.s='map';cpRender()});b.innerHTML=`<div class="text-2xl">${x[1]}</div><div class="font-bold text-sm">${nm(x)}</div><div class="text-xs text-slate-500">${x[3][hi?1:0]}</div><div class="h-2 rounded-full bg-sky-100 dark:bg-slate-700 overflow-hidden"><div class="h-full bg-amber-400" style="width:${c*10}%"></div></div><div class="text-xs font-semibold text-primary-600">${c>=10?T('Completed','पूरा हुआ'):c?T(`Level ${c+1} of 10 · ${10-c} left`,`स्तर ${c+1} / 10 · ${10-c} बाकी`):T('Start · 10 levels','शुरू करें · 10 स्तर')}</div>`})}
+else{const x=cp.g,c=P[x[0]]||0;const back=mk(r,'button','text-sm font-semibold text-primary-600 mb-3','← '+(cp.s=='map'?T('All games','सभी खेल'):T('Levels','स्तर')),()=>{cp.s=cp.s=='map'?'hub':'map';cpRender()});
+if(cp.s=='map'){mk(r,'h3','text-xl font-bold',x[1]+' '+nm(x));mk(r,'p','text-sm text-slate-500 mb-3',x[4][hi?1:0]);const nx=Math.min(c+1,10);mk(r,'p','font-bold text-sm',c>=10?T('All 10 levels complete!','सभी 10 स्तर पूरे!'):T(`Level ${nx} of 10 · ${10-c} levels left`,`स्तर ${nx} / 10 · ${10-c} स्तर बाकी`));const pb=mk(r,'div','h-3 rounded-full bg-sky-100 dark:bg-slate-700 overflow-hidden my-3');mk(pb,'div','h-full bg-amber-400').style.width=c*10+'%';
+const g=mk(r,'div',BOX+' p-4 grid grid-cols-5 gap-3 justify-items-center mb-4');for(let i=1;i<=10;i++)mk(g,'button','w-12 h-12 rounded-full font-bold text-sm border-2 '+(i<=c?'bg-amber-400 border-amber-400 text-slate-900':i==c+1?'bg-primary-500 border-primary-500 text-white':'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-400'),i<=c+1?String(i):'🔒',i<=c+1?()=>{cp.L=i;cp.s='play';cpRender()}:null);
+mk(r,'button',BTN,c>=10?T('Replay level 10','स्तर 10 फिर खेलें'):T(`Play level ${nx}`,`स्तर ${nx} खेलें`),()=>{cp.L=nx;cp.s='play';cpRender()})}
+else if(cp.s=='play'){mk(r,'h3','text-lg font-bold mb-3',nm(x)+' · '+T(`Level ${cp.L} of 10`,`स्तर ${cp.L} / 10`));const st=mk(r,'div',BOX+' p-4');x[5](st,cp.L,()=>{const q=cpP();q[x[0]]=Math.max(q[x[0]]||0,cp.L);cpSave(q);cp.s='done';cpRender()},T)}
+else{const q=P[x[0]]||0,left=10-q,bx=mk(r,'div',BOX+' p-8 text-center space-y-3');mk(bx,'div','text-4xl','🎉');mk(bx,'h3','text-xl font-bold',T(`Level ${cp.L} complete!`,`स्तर ${cp.L} पूरा हुआ!`));mk(bx,'p','text-sm text-slate-500',left>0?T(`${left} levels left in ${nm(x)}.`,`${nm(x)} में ${left} स्तर बाकी हैं।`):T('You finished every level. Wonderful!','आपने सभी स्तर पूरे कर लिए। शानदार!'));const row=mk(bx,'div','flex flex-wrap justify-center gap-2 pt-2');if(cp.L<10)mk(row,'button',BTN,T('Next level','अगला स्तर'),()=>{cp.L++;cp.s='play';cpRender()});mk(row,'button','px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-600 text-sm font-bold',T('Replay','फिर खेलें'),()=>{cp.s='play';cpRender()});mk(row,'button','px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-600 text-sm font-bold',T('Back to games','खेलों पर वापस'),()=>{cp.s='hub';cpRender()})}}}
+(function(){const p=msApplyFullLanguage;msApplyFullLanguage=function(){p();cpRender()}})();
+cpRender();
 </script>
 
 </body>
