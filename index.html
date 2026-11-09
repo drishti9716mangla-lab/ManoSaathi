@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManoSaathi | Your wellbeing companion</title>
+    <!-- Tailwind CSS CDN -->
+    <meta name="color-scheme" content="light dark">
+<meta name="darkreader-lock">
+<style>:root{color-scheme:light}html.dark{color-scheme:dark}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style id="manosaathi-pdf-redesign">
+:root{--ms-bg:#eef6fc;--ms-ink:#18344b;--ms-muted:#647b8e;--ms-blue:#1478b8;--ms-border:#d8e7f2}
+body{background:var(--ms-bg)!important;color:var(--ms-ink)!important;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+header{background:#f8fbfe!important;border-color:var(--ms-border)!important;padding:12px 22px!important;box-shadow:none!important}
+header .w-10{background:#167bb8!important}
+header h1{font-size:16px!important;color:#176b9c}
+header p{color:#617c91!important}
+aside{background:#f7fbff!important;border-color:var(--ms-border)!important}
+main{background:#edf6fc!important}
+#section-home{padding:22px!important}
+#section-home>.max-w-5xl{max-width:1040px!important;gap:14px!important}
+#section-home .rounded-3xl{background:#e3f2fc!important;border:1px solid #d2e8f7!important;border-radius:18px!important;padding:20px 22px!important}
+#section-home .rounded-3xl p:first-child{color:#246d96!important;font-size:12px!important}
+#section-home .rounded-3xl h2{font-size:25px!important;color:#193b54!important;margin-top:4px!important}
+#section-home .rounded-3xl p:last-child{font-size:13px!important;color:#60798d!important}
+#section-home .bg-white.rounded-2xl{background:#fff!important;border-color:#dce9f2!important;box-shadow:0 2px 10px #254b6410!important;padding:16px!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2{gap:12px!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button{min-height:110px;border-radius:15px!important;padding:16px!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(1){background:#d9efff!important;border-color:#c8e5f8!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(2){background:#e8e4ff!important;border-color:#d9d3fa!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(3){background:#dff2fb!important;border-color:#cce8f5!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(4){background:#fff0c9!important;border-color:#f4e2b0!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button h3{font-size:14px!important;color:#1c3b52!important}
+#section-home .grid.grid-cols-1.sm\:grid-cols-2>button p{font-size:11px!important;line-height:1.45!important;color:#526b7d!important}
+#section-home .mood-choice{background:#fff!important;border-color:#dce7ef!important;border-radius:999px!important;padding:8px 12px!important;font-size:12px!important}
+#section-home .mood-choice span{font-size:11px!important}
+#section-home .mood-choice:focus{outline:2px solid #1683c2}
+#section-home #moodHistory{gap:7px!important}
+#section-home .rounded-2xl.bg-rose-50{background:#fff0f0!important;border-color:#f5d9d9!important;border-radius:15px!important}
+.quick-prompt{padding:7px 12px;border-radius:999px;background:#f1f6fa;border:1px solid #d8e4ec;color:#38556a;font-size:12px;white-space:nowrap;transition:.15s}
+.quick-prompt:hover{background:#e4f2fc;border-color:#a9d2ed}
+#section-chat{background:#f2f8fc}
+#section-chat>div:first-child,#section-chat>div:nth-child(2),#chatForm,#quickPromptsToolbar{background:#fbfdff!important;border-color:#dce8f1!important}
+#chatMessages{background:#f1f7fc!important;padding:22px!important}
+#chatMessages .bg-slate-100{background:#fff!important;border:1px solid #dce8f1!important}
+#chatMessages .bg-primary-500{background:#167bb8!important}
+#chatForm input{background:#f2f7fb!important}
+#section-screener,#section-wellness,#section-firstaid{background:#f0f7fc!important}
+#section-screener .bg-white,#section-wellness .bg-white,#section-firstaid .bg-white{border-color:#dbe8f1!important;box-shadow:0 2px 10px #254b6410}
+aside nav button{border-radius:11px!important}
+aside nav button.bg-primary-500{background:#167bb8!important}
+button{transition:background-color .15s,border-color .15s,box-shadow .15s}
+@media(max-width:767px){
+ header{padding:10px 12px!important}
+ header .text-xs.px-2{display:none}
+ aside{display:none!important}
+ #section-home{padding:14px 12px 84px!important}
+ #section-home .rounded-3xl h2{font-size:22px!important}
+ #section-home .grid.grid-cols-1.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #section-home .grid.grid-cols-1.sm\:grid-cols-2>button{min-height:120px;padding:12px!important}
+ #section-home .grid.grid-cols-2.sm\:grid-cols-5{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+ #section-chat{padding-bottom:66px}
+ #chatMessages{padding:14px!important}
+ #quickPromptsToolbar{padding:8px 10px!important}
+ #section-screener,#section-wellness,#section-firstaid{padding:14px 12px 84px!important}
+ #ms-bottom-nav{display:flex}
+}
+#ms-bottom-nav{display:none;position:fixed;z-index:40;left:0;right:0;bottom:0;background:#fbfdff;border-top:1px solid #d8e6ef;padding:7px 5px calc(7px + env(safe-area-inset-bottom));justify-content:space-around;box-shadow:0 -3px 12px #18344b0d}
+#ms-bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;color:#61788a;font-size:10px;min-width:48px}
+#ms-bottom-nav button i{font-size:15px}
+#ms-bottom-nav button.active{color:#167bb8;font-weight:700}
+.dark body{background:#101c2a!important;color:#e5edf5!important}
+.dark header,.dark aside,.dark #section-chat>div:first-child,.dark #section-chat>div:nth-child(2),.dark #chatForm,.dark #quickPromptsToolbar{background:#152437!important;border-color:#263b50!important}
+.dark main,.dark #section-chat,.dark #chatMessages,.dark #section-screener,.dark #section-wellness,.dark #section-firstaid{background:#101c2a!important}
+.dark #section-home .rounded-3xl{background:#1a3046!important;border-color:#2b4861!important}
+.dark #section-home .rounded-3xl h2,.dark #section-home .grid.grid-cols-1.sm\:grid-cols-2>button h3{color:#e5edf5!important}
+.dark #section-home .rounded-3xl p,.dark #section-home .grid.grid-cols-1.sm\:grid-cols-2>button p{color:#c1d0dc!important}
+.dark #section-home .bg-white.rounded-2xl,.dark #section-home .mood-choice{background:#17283a!important;border-color:#30475c!important;color:#e5edf5!important}
+.dark #section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(1){background:#183b56!important}
+.dark #section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(2){background:#302c50!important}
+.dark #section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(3){background:#193c4d!important}
+.dark #section-home .grid.grid-cols-1.sm\:grid-cols-2>button:nth-child(4){background:#493b20!important}
+.dark #ms-bottom-nav{background:#152437;border-color:#263b50}
+/* ---- dark mode fixes ---- */
+.dark #chatMessages .bg-slate-100{background:#1d3248!important;border:1px solid #2b4861!important;color:#e5edf5!important}
+.dark #chatMessages .bg-slate-100 *{color:inherit}
+.dark #chatForm input{background:#1a2c40!important;color:#e5edf5!important;border-color:#30475c!important}
+.dark #chatForm input::placeholder{color:#7d93a6}
+.dark #section-chat #journalPanel{background:#101c2a!important}
+.dark .quick-prompt{background:#1a2c40;border-color:#30475c;color:#c9d8e4}
+.dark .ms-soft-card{background:#1a3046!important;border-color:#2b4861!important;color:#e5edf5!important}
+.dark .ms-soft-card p,.dark .ms-soft-card span{color:#c1d0dc!important}
+.dark .ms-soft-card .font-bold{color:#e5edf5!important}
+.dark #section-home .rounded-2xl.bg-rose-50{background:#3a1f2a!important;border-color:#5c2d3c!important}
+.dark #section-home .rounded-2xl.bg-rose-50 h3,.dark #section-home .rounded-2xl.bg-rose-50 p{color:#ffc2cf!important}
+.dark #section-screener,.dark #section-wellness,.dark #section-firstaid{color:#e5edf5}
+.dark #section-screener .bg-white,.dark #section-wellness .bg-white,.dark #section-firstaid .bg-white,.dark #section-screener .bg-slate-50,.dark #section-screener .bg-slate-100{background:#17283a!important;border-color:#30475c!important;color:#e5edf5!important}
+.dark #section-screener .bg-slate-200,.dark #section-wellness .bg-slate-200{background:#243a50!important;color:#e5edf5!important}
+.dark #section-screener .text-slate-600,.dark #section-wellness .text-slate-600,.dark #section-firstaid .text-slate-600{color:#c1d0dc!important}
+.dark #section-screener input,.dark #section-screener select{background:#1a2c40!important;color:#e5edf5!important;border-color:#30475c!important}
+.dark #section-home .text-slate-500,.dark #section-home .text-slate-600{color:#b4c4d1!important}
+.dark #ms-greeting{color:#f1f5f9!important}
+.dark #ms-greeting-sub{color:#b4c4d1!important}
+
+/* ---- dark mode: stronger contrast for the home cards ---- */
+html.dark #section-home .ms-soft-card{background:#1b3248!important;border:1px solid #38566f!important}
+html.dark #section-home .ms-soft-card,html.dark #section-home .ms-soft-card *{color:#e8f0f6!important}
+html.dark #section-home .ms-soft-card .text-xs,html.dark #section-home .ms-soft-card .text-sm,html.dark #section-home .ms-soft-card p+p,html.dark #section-home .ms-soft-card span{color:#c3d3df!important}
+html.dark #section-home .bg-rose-50{background:#3d2030!important;border:1px solid #7a3d55!important}
+html.dark #section-home .bg-rose-50 h3{color:#ffb3c6!important}
+html.dark #section-home .bg-rose-50 p,html.dark #section-home .bg-rose-50 p *{color:#ffdbe5!important}
+html.dark #ms-thought{color:#f1f5f9!important}
+
+/* ---- phone bottom bar was being overridden by a later display:none rule ---- */
+@media (max-width:767px){ #ms-bottom-nav{display:flex!important}}
+/* ---- lower home tiles match the cards above ---- */
+#section-home .ms-tile{border-radius:15px!important;padding:16px!important;min-height:110px;text-align:left}
+#section-home .ms-tile h3{font-size:14px;color:#1c3b52}
+#section-home .ms-tile p{font-size:11px;line-height:1.45;color:#526b7d}
+#section-home .ms-tile-a{background:#dcf4ee!important;border-color:#c6ebe2!important}
+#section-home .ms-tile-b{background:#e4e9ff!important;border-color:#d3dafa!important}
+#section-home .ms-tile-c{background:#fde7ef!important;border-color:#f6cfdc!important;min-height:0}
+html.dark #section-home .ms-tile-a{background:#173f3a!important;border-color:#25594f!important}
+html.dark #section-home .ms-tile-b{background:#232c55!important;border-color:#36427a!important}
+html.dark #section-home .ms-tile-c{background:#4a2437!important;border-color:#6b3750!important}
+html.dark #section-home .ms-tile h3{color:#e8f0f6!important}
+html.dark #section-home .ms-tile p{color:#c3d3df!important}
+.dark #moodHistory span{background:#1e3348!important;color:#e5edf5!important}
+
+</style>
+
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-200 flex flex-col">
+
+    <!-- Top Navigation / Header -->
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between flex-shrink-0 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center text-white shadow-md shadow-primary-500/30">
+                <i class="fa-solid fa-heart-pulse text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg tracking-tight flex items-center space-x-2">
+                    <span id="hdrMainTitle">ManoSaathi / मनोसाथी</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 font-semibold">AI v2.5</span>
+                </h1>
+                <p id="hdrSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Your Empathetic Health & First-Aid Companion</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <!-- Emergency contact button -->
+            <button type="button" id="contactHeaderBtn" onclick="openContactModal()" aria-label="Emergency contact" title="Emergency contact / आपातकालीन संपर्क" class="w-9 h-9 rounded-lg border-2 border-primary-500 text-primary-600 dark:text-primary-300 flex items-center justify-center hover:bg-primary-50 dark:hover:bg-slate-800 transition">
+                <i class="fa-solid fa-user-plus text-sm"></i>
+            </button>
+            <!-- Language Toggle Button -->
+            <button onclick="toggleLanguage()" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition">
+                <i class="fa-solid fa-globe text-primary-500"></i>
+                <span id="langLabel">हिंदी / EN</span>
+            </button>
+            <!-- Dark Mode Toggle Button -->
+            <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <i id="themeIcon" class="fa-solid fa-moon text-slate-600 dark:text-slate-300 text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between p-4 flex-shrink-0 hidden md:flex">
+            <div class="space-y-6">
+                <!-- Navigation Tabs -->
+                <nav class="space-y-1.5">
+                    <button id="tabBtn-home" onclick="switchTab('home')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition bg-primary-500 text-white shadow-md shadow-primary-500/20">
+                        <i class="fa-solid fa-house w-5"></i><span>Home</span>
+                    </button>
+                    <button id="tabBtn-chat" onclick="switchTab('chat')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-comments w-5"></i>
+                        <span id="navChat">AI Health Partner</span>
+                    </button>
+                    <button id="tabBtn-screener" onclick="switchTab('screener')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-stethoscope w-5"></i>
+                        <span id="navScreener">Symptom Screener</span>
+                    </button>
+                    <button id="tabBtn-wellness" onclick="switchTab('wellness')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-brain w-5"></i>
+                        <span id="navWellness">Games & Wellness Tools</span>
+                    </button>
+                    <button id="tabBtn-firstaid" onclick="switchTab('firstaid')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-kit-medical w-5"></i>
+                        <span id="navFirstAid">First-Aid Guides</span>
+                    </button>
+                    <button id="tabBtn-help" onclick="switchTab('help')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-life-ring w-5"></i>
+                        <span>Find help</span>
+                    </button>
+                </nav>
+
+                <!-- Emergency SOS Helpline Card (Original Solid Red Design) -->
+                <div class="p-4 rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 text-white space-y-2 shadow-lg shadow-rose-500/20">
+                    <div class="flex items-center space-x-2 font-bold text-xs">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span id="sosTitle">Emergency Helplines</span>
+                    </div>
+                    <p id="sosSubtitle" class="text-[11px] text-rose-100">Instant help in India</p>
+                    <div class="space-y-1.5 pt-1 text-xs">
+                        <div id="sos112" class="font-semibold bg-white/10 px-2.5 py-1.5 rounded-xl flex items-center justify-between"><span class="font-bold">112</span> - National Emergency <i class="fa-solid fa-chevron-right text-[10px]"></i></div>
+                        <div id="sosManas" class="font-semibold bg-white/10 px-2.5 py-1.5 rounded-xl flex items-center justify-between"><span class="font-bold">14416</span> - Tele-MANAS <i class="fa-solid fa-chevron-right text-[10px]"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat History Button -->
+            <button onclick="openHistoryModal()" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-clock-rotate-left text-primary-500"></i>
+                    <span id="btnHistory">History</span>
+                </div>
+                <span id="historyCountBadge" class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px]">0</span>
+            </button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-hidden relative">
+
+            <!-- Home Dashboard -->
+            <section id="section-home" class="flex-1 overflow-y-auto p-6 space-y-6">
+                <div class="max-w-5xl mx-auto w-full space-y-6">
+                    <div class="rounded-3xl p-7 bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border border-emerald-100 dark:border-slate-700">
+                        <p class="text-sm font-semibold text-emerald-700 dark:text-emerald-300">A little space for you 🌿</p>
+                        <h2 class="text-3xl font-bold mt-2">Welcome to ManoSaathi</h2>
+                        <p class="text-slate-600 dark:text-slate-300 mt-2">Pause, reflect and take one small step towards your wellbeing.</p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-2 px-1">
+                        <div><p id="ms-greeting" class="text-xl font-bold text-slate-800 dark:text-slate-100">Good day</p><p id="ms-greeting-sub" class="text-xs text-slate-500">How are you feeling today? · आज आप कैसा महसूस कर रहे हैं?</p></div>
+                        <button onclick="switchTab('firstaid')" class="text-xs font-semibold px-3 py-2 rounded-full border border-rose-200 text-rose-700 bg-white">Need help?</button>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+                        <div class="flex flex-wrap justify-between gap-2 items-center"><div><h3 class="font-bold text-lg">How are you feeling today?</h3><p class="text-sm text-slate-500">Choose the mood that feels closest. You can change it later.</p></div><span id="moodTodayLabel" class="text-xs text-slate-500"></span></div>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-4">
+                            <button type="button" onclick="saveMood('Happy','😊')" class="mood-choice rounded-xl border p-3 hover:bg-emerald-50 dark:hover:bg-slate-800">😊<span class="block text-sm mt-1">Happy</span></button>
+                            <button type="button" onclick="saveMood('Calm','😌')" class="mood-choice rounded-xl border p-3 hover:bg-emerald-50 dark:hover:bg-slate-800">😌<span class="block text-sm mt-1">Calm</span></button>
+                            <button type="button" onclick="saveMood('Okay','🙂')" class="mood-choice rounded-xl border p-3 hover:bg-emerald-50 dark:hover:bg-slate-800">🙂<span class="block text-sm mt-1">Okay</span></button>
+                            <button type="button" onclick="saveMood('Anxious','😟')" class="mood-choice rounded-xl border p-3 hover:bg-emerald-50 dark:hover:bg-slate-800">😟<span class="block text-sm mt-1">Anxious</span></button>
+                            <button type="button" onclick="saveMood('Low','😔')" class="mood-choice rounded-xl border p-3 hover:bg-emerald-50 dark:hover:bg-slate-800">😔<span class="block text-sm mt-1">Low</span></button>
+                        </div>
+                        <p id="moodSavedMessage" class="text-sm text-emerald-700 dark:text-emerald-300 mt-3" aria-live="polite"></p>
+                        <div class="mt-5 border-t pt-4"><div class="flex justify-between items-center"><h4 class="font-semibold text-sm">Your recent mood check-ins</h4><span id="moodCount" class="text-xs text-slate-500">0 entries</span></div><div id="moodHistory" class="flex flex-wrap gap-2 mt-3 text-sm text-slate-600 dark:text-slate-300"><span>No check-ins yet.</span></div></div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button onclick="switchTab('chat');showChatMode('chat')" class="text-left bg-emerald-50 dark:bg-slate-900 border border-emerald-100 dark:border-slate-700 p-6 rounded-2xl hover:shadow-md"><i class="fa-solid fa-comments text-2xl text-emerald-600"></i><h3 class="font-bold mt-3">Talk it out</h3><p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Chat with the ManoSaathi wellbeing assistant.</p></button>
+                        <button onclick="switchTab('chat');showChatMode('journal')" class="text-left bg-violet-50 dark:bg-slate-900 border border-violet-100 dark:border-slate-700 p-6 rounded-2xl hover:shadow-md"><i class="fa-solid fa-book-open text-2xl text-violet-600"></i><h3 class="font-bold mt-3">Journal</h3><p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Write privately about your thoughts and feelings.</p></button>
+                        <button onclick="switchTab('screener')" class="text-left bg-sky-50 dark:bg-slate-900 border border-sky-100 dark:border-slate-700 p-6 rounded-2xl hover:shadow-md"><i class="fa-solid fa-clipboard-check text-2xl text-sky-600"></i><h3 class="font-bold mt-3">Symptom Screener</h3><p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Review symptoms in three simple steps.</p></button>
+                        <button onclick="switchTab('wellness')" class="text-left bg-amber-50 dark:bg-slate-900 border border-amber-100 dark:border-slate-700 p-6 rounded-2xl hover:shadow-md"><i class="fa-solid fa-spa text-2xl text-amber-600"></i><h3 class="font-bold mt-3">Calm & Play</h3><p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Explore your existing games and wellness tools.</p></button>
+                    </div>
+
+                    <div class="ms-tile ms-tile-c text-left bg-pink-50 border border-pink-100 rounded-2xl"><i class="fa-solid fa-heart text-2xl text-pink-500"></i><h3 class="font-bold mt-3">Thought of the day</h3><p id="ms-thought" class="text-sm mt-1">A fresh start is waiting.</p></div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="switchTab('firstaid')" class="ms-tile ms-tile-a text-left bg-teal-50 border border-teal-100 rounded-2xl hover:shadow-md"><i class="fa-solid fa-kit-medical text-2xl text-teal-600"></i><h3 class="font-bold mt-3">First Aid</h3><p class="text-sm mt-1">Quick steps</p></button>
+                        <button onclick="switchTab('help')" class="ms-tile ms-tile-b text-left bg-indigo-50 border border-indigo-100 rounded-2xl hover:shadow-md"><i class="fa-solid fa-life-ring text-2xl text-indigo-600"></i><h3 class="font-bold mt-3">Find support</h3><p class="text-sm mt-1">Emergency & mental-health helplines</p></button>
+                    </div>
+                    <div class="rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900 p-5"><h3 class="font-bold text-rose-800 dark:text-rose-300">Need urgent help?</h3><p class="text-sm text-rose-800 dark:text-rose-200 mt-1">India emergency services: <strong>112</strong>. <span>Tele-MANAS mental health support:</span> <strong>14416</strong>.</p></div>
+                </div>
+            </section>
+
+            <!-- 1. AI Health Partner Chat Section -->
+            <section id="section-chat" class="flex-1 flex flex-col overflow-hidden hidden">
+                <!-- Chat Header Bar -->
+                <div class="p-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between flex-shrink-0">
+                    <div>
+                        <h2 id="chatHeaderTitle" class="font-bold text-sm">Manoसाथी AI Assistant</h2>
+                        <p id="chatHeaderSub" class="text-xs text-slate-500 dark:text-slate-400">Ask health queries in English or Hindi</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button type="button" onclick="openHistoryModal()" aria-label="Chat history" title="History" class="md:hidden w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 text-primary-600 dark:text-primary-300 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-clock-rotate-left text-sm"></i>
+                        </button>
+                        <button onclick="startNewChat()" class="px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/40 text-primary-600 dark:text-primary-400 border border-primary-200 dark:border-primary-900 text-xs font-bold hover:bg-primary-100 transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-plus text-[10px]"></i>
+                            <span id="btnNewChat">New Chat</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="px-4 py-3 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex gap-2">
+                    <button id="chatModeButton" onclick="showChatMode('chat')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-primary-500 text-white"> <i class="fa-solid fa-comments mr-2"></i>Talk it out</button>
+                    <button id="journalModeButton" onclick="showChatMode('journal')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 dark:bg-slate-800"> <i class="fa-solid fa-book-open mr-2"></i>Journal</button>
+                </div>
+
+                <!-- Chat Messages Scroll Area -->
+                <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white flex-shrink-0">
+                            <i class="fa-solid fa-robot text-xs"></i>
+                        </div>
+                        <div id="welcomeMessageEl" class="bg-slate-100 dark:bg-slate-800 p-3.5 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed text-sm shadow-sm">
+                            Hi, I’m ManoSaathi. This is a kind, private space to share what’s on your mind. What would you like to talk about today?
+                        </div>
+                    </div>
+                </div>
+
+                <div id="journalPanel" class="hidden flex-1 overflow-y-auto p-6 bg-slate-50 dark:bg-slate-950">
+                    <div class="max-w-3xl mx-auto space-y-4">
+                        <div><h3 class="text-xl font-bold">My Journal</h3><p class="text-sm text-slate-500 mt-1">A private space to write. Entries are saved in this browser on this device.</p></div>
+                        <input id="journalTitle" type="text" maxlength="100" placeholder="Give this entry a title (optional)" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 text-sm">
+                        <textarea id="journalText" rows="8" maxlength="10000" placeholder="Write whatever is on your mind..." class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 text-sm"></textarea>
+                        <div class="flex items-center gap-3"><button onclick="saveJournalEntry()" class="px-5 py-2.5 rounded-xl bg-primary-500 text-white font-semibold text-sm">Save entry</button><span id="journalStatus" class="text-sm text-emerald-700" aria-live="polite"></span></div>
+                        <div class="border-t border-slate-200 dark:border-slate-700 pt-4"><h4 class="font-bold mb-3">Previous entries</h4><div id="journalEntries" class="space-y-3"></div></div>
+                        <p class="text-xs text-slate-500">Privacy note: these entries stay in your browser's local storage. They are not sent to the Flask chatbot backend. Do not use a shared/public device for sensitive writing.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Prompts Toolbar -->
+                <div id="quickPromptsToolbar" class="px-4 py-2 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center space-x-2 overflow-x-auto flex-shrink-0">
+                    <button onclick="sendQuickPrompt('I feel stressed and overwhelmed')" data-prompt="stress" class="quick-prompt">🌿 Feeling stressed</button>
+                    <button onclick="sendQuickPrompt('I cannot sleep and my mind is busy')" data-prompt="sleep" class="quick-prompt">🌙 Trouble sleeping</button>
+                    <button onclick="sendQuickPrompt('I need someone to listen to me')" data-prompt="listen" class="quick-prompt">💬 Just listen</button>
+                    <button onclick="sendQuickPrompt('I want to talk about my feelings')" data-prompt="feelings" class="quick-prompt">💗 Talk about feelings</button>
+                </div>
+
+                <p id="micStatus" class="px-4 py-1 text-xs text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 hidden" role="status" aria-live="polite"></p>
+                <!-- Chat Input Form -->
+                <form id="chatForm" onsubmit="handleChatSubmit(event)" class="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center space-x-3 flex-shrink-0">
+                    <input type="text" id="chatInput" placeholder="Type your health query / बीमारी या लक्षण यहाँ लिखें..." class="flex-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 transition">
+                    <button type="button" id="micBtn" onclick="msToggleMic()" style="display:none" aria-label="Speak your message" aria-pressed="false" title="Speak / बोलकर लिखें" class="w-11 h-11 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl items-center justify-center transition flex-shrink-0">
+                        <i id="micIcon" class="fa-solid fa-microphone text-sm"></i>
+                    </button>
+                    <button type="submit" class="w-11 h-11 bg-primary-500 hover:bg-primary-600 text-white rounded-xl flex items-center justify-center transition shadow-md shadow-primary-500/20 flex-shrink-0">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- 2. Symptom Screener Section -->
+            <section id="section-screener" class="flex-1 overflow-y-auto p-6 hidden">
+                <div class="max-w-3xl mx-auto w-full space-y-5">
+                    <div><h2 class="text-2xl font-bold">Symptom Screener</h2><p class="text-sm text-slate-500 mt-1">A guided symptom check. It does not diagnose a disease.</p></div>
+                    <div class="flex gap-2 text-xs font-semibold"><span id="scrStepBadge1" class="px-3 py-2 rounded-full bg-primary-500 text-white">1. About you</span><span id="scrStepBadge2" class="px-3 py-2 rounded-full bg-slate-200 dark:bg-slate-800">2. Symptoms</span><span id="scrStepBadge3" class="px-3 py-2 rounded-full bg-slate-200 dark:bg-slate-800">3. Follow-up</span></div>
+                    <div id="scrStep1Panel" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4">
+                        <h3 class="font-bold">Step 1 — About you</h3><div class="grid sm:grid-cols-3 gap-4">
+                            <label class="text-sm">Age (required)<input id="scrAge" type="number" min="0" max="120" class="mt-1 w-full rounded-xl border bg-slate-50 dark:bg-slate-800 dark:border-slate-700 p-3" placeholder="e.g. 25"></label>
+                            <label class="text-sm">Gender (required)<select id="scrGender" class="mt-1 w-full rounded-xl border bg-slate-50 dark:bg-slate-800 dark:border-slate-700 p-3"><option value="">Select</option><option value="female">Female</option><option value="male">Male</option><option value="other">Other / prefer not to say</option></select></label>
+                            <label class="text-sm">Temperature (optional)<div class="flex gap-1 mt-1"><input id="scrTemp" type="number" step="0.1" class="min-w-0 w-full rounded-xl border bg-slate-50 dark:bg-slate-800 dark:border-slate-700 p-3" placeholder="37.0"><select id="scrTempUnit" class="rounded-xl border bg-slate-50 dark:bg-slate-800 dark:border-slate-700 p-2 dark:border-slate-700"><option value="C">°C</option><option value="F">°F</option></select></div></label>
+                        </div><p class="text-xs text-slate-500">Only enter a temperature if you have measured it. You can leave it blank.</p>
+                        <div class="flex justify-end"><button onclick="goScreenerStep(2)" class="px-5 py-2.5 rounded-xl bg-primary-500 text-white font-semibold">Continue</button></div>
+                    </div>
+                    <div id="scrStep2Panel" class="hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-5">
+                        <div><h3 class="font-bold">Step 2 — Select your symptoms</h3><p class="text-xs text-slate-500 mt-1">Choose all that apply. The levels describe how urgent the symptom feels, not a disease severity score.</p></div>
+                        <div class="space-y-3"><div class="p-4 rounded-xl border border-emerald-200 dark:border-emerald-900"><h4 class="font-bold text-emerald-700 dark:text-emerald-300 mb-2">Level 1 — Mild / manageable</h4><div class="grid sm:grid-cols-2 gap-2 text-sm">
+                            <label><input type="checkbox" name="scrSymptoms" value="mild_headache"> Mild headache</label><label><input type="checkbox" name="scrSymptoms" value="mild_cold"> Mild cold / sore throat</label><label><input type="checkbox" name="scrSymptoms" value="mild_stomach"> Mild stomach discomfort</label><label><input type="checkbox" name="scrSymptoms" value="mild_tired"> Tiredness / low energy</label><label><input type="checkbox" name="scrSymptoms" value="mild_sleep"> Sleep difficulty</label>
+                        </div></div>
+                        <div class="p-4 rounded-xl border border-amber-200 dark:border-amber-900"><h4 class="font-bold text-amber-700 dark:text-amber-300 mb-2">Level 2 — Moderate / needs attention</h4><div class="grid sm:grid-cols-2 gap-2 text-sm">
+                            <label><input type="checkbox" name="scrSymptoms" value="moderate_headache"> Persistent / recurring headache</label><label><input type="checkbox" name="scrSymptoms" value="moderate_fever"> Fever / chills</label><label><input type="checkbox" name="scrSymptoms" value="moderate_stomach"> Repeated stomach pain</label><label><input type="checkbox" name="scrSymptoms" value="moderate_vomit"> Vomiting / loose motions</label><label><input type="checkbox" name="scrSymptoms" value="moderate_anxiety"> Anxiety / panic feelings</label><label><input type="checkbox" name="scrSymptoms" value="moderate_lowmood"> Low mood / loss of interest</label>
+                        </div></div>
+                        <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900"><h4 class="font-bold text-rose-700 dark:text-rose-300 mb-2">Level 3 — Severe / urgent warning signs</h4><div class="grid sm:grid-cols-2 gap-2 text-sm">
+                            <label><input type="checkbox" name="scrSymptoms" value="urgent_breathing"> Severe difficulty breathing</label><label><input type="checkbox" name="scrSymptoms" value="urgent_chest"> Chest pain / pressure</label><label><input type="checkbox" name="scrSymptoms" value="urgent_bleeding"> Heavy bleeding / serious injury</label><label><input type="checkbox" name="scrSymptoms" value="urgent_unconscious"> Fainting, confusion or not responding</label><label><input type="checkbox" name="scrSymptoms" value="urgent_suicide"> Thoughts of suicide / immediate self-harm risk</label><label><input type="checkbox" name="scrSymptoms" value="urgent_sudden"> Sudden severe pain or sudden weakness</label>
+                        </div></div></div>
+                        <div class="flex flex-wrap justify-between gap-2"><button onclick="clearScreener()" class="px-4 py-2 rounded-xl border text-sm">Clear all choices</button><div class="flex gap-2"><button onclick="goScreenerStep(1)" class="px-4 py-2 rounded-xl border text-sm">Back</button><button onclick="goScreenerStep(3)" class="px-5 py-2 rounded-xl bg-primary-500 text-white font-semibold text-sm">Continue</button></div></div>
+                    </div>
+                    <div id="scrStep3Panel" class="hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4">
+                        <h3 class="font-bold">Step 3 — A few follow-up questions</h3><p class="text-xs text-slate-500">Questions appear based on the symptoms you selected. You can go back and edit your choices.</p><div id="scrFollowups" class="space-y-4"></div>
+                        <div class="flex flex-wrap justify-between gap-2"><button onclick="clearScreener()" class="px-4 py-2 rounded-xl border text-sm">Clear all choices</button><div class="flex gap-2"><button onclick="goScreenerStep(2)" class="px-4 py-2 rounded-xl border text-sm">Back / edit symptoms</button><button onclick="evaluateNewScreener()" class="px-5 py-2 rounded-xl bg-primary-500 text-white font-semibold text-sm">View guidance</button></div></div>
+                    </div>
+                    <div id="screenerResult" class="hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 text-sm leading-6"></div>
+                    <p class="text-xs text-slate-500">This educational screener cannot diagnose conditions or replace a clinician. For an emergency in India, call 112. For mental health support, Tele-MANAS is 14416.</p>
+                </div>
+            </section>
+
+            <!-- 3. Games & Wellness Hub Section -->
+            <section id="section-wellness" class="flex-1 flex flex-col overflow-y-auto p-6 hidden space-y-6">
+                <div class="max-w-3xl mx-auto w-full space-y-6">
+                    <div>
+                        <h2 id="wellHeading" class="text-xl font-bold">Interactive Games & Wellness Hub</h2>
+                        <p id="wellSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Engaging games and mindful tools for relaxation and brain health.</p>
+                    </div>
+
+                    <!-- Game Selector Buttons -->
+                    <div class="flex flex-wrap gap-2">
+                        <button id="gBtn-memory" onclick="switchGame('memory')" class="py-2 px-3 rounded-xl text-xs font-bold bg-primary-500 text-white shadow">1. Memory Game</button>
+                        <button id="gBtn-hydration" onclick="switchGame('hydration')" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">2. Hydration Game</button>
+                        <button id="gBtn-colour" onclick="switchGame('colour')" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">3. Colour Game</button>
+                        <button id="gBtn-thought" onclick="switchGame('thought')" class="py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">4. Good Thought</button>
+                    </div>
+
+                    <!-- Game 1: Memory Game -->
+                    <div id="game-memory" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 id="mTitle" class="font-bold text-sm">🧠 Memory Concentration Game</h3>
+                                <p id="mDesc" class="text-xs text-slate-500 dark:text-slate-400">Match pairs of health icons to train cognitive focus.</p>
+                            </div>
+                            <button onclick="initMemoryGame()" id="mRestart" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-slate-200 transition">Restart Game</button>
+                        </div>
+                        <div id="memoryStatus" class="text-xs font-bold text-primary-600 dark:text-primary-400">Find all matching pairs!</div>
+                        <div id="memoryGrid" class="grid grid-cols-4 gap-3"></div>
+                    </div>
+
+                    <!-- Game 2: Hydration Game -->
+                    <div id="game-hydration" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm hidden">
+                        <div>
+                            <h3 id="hTitle" class="font-bold text-sm">💧 Hydration Challenge Game</h3>
+                            <p id="hDesc" class="text-xs text-slate-500 dark:text-slate-400">Drink 8 glasses of water today! Click each glass as you drink.</p>
+                        </div>
+                        <div id="hydrationStatus" class="text-xs font-bold text-blue-500">Progress: 0 / 8 Glasses</div>
+                        <div id="hydrationGameIcons" class="flex flex-wrap gap-4 py-2"></div>
+                        <button onclick="drinkWaterGame()" id="hBtn" class="py-2.5 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl text-xs font-bold transition shadow-md">Drink a Glass 💧</button>
+                    </div>
+
+                    <!-- Game 3: Colour Reflex Game -->
+                    <div id="game-colour" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm hidden">
+                        <div>
+                            <h3 id="cTitle" class="font-bold text-sm">🎨 Colour Focus & Reaction Game</h3>
+                            <p id="cDesc" class="text-xs text-slate-500 dark:text-slate-400">Click the matching color box quickly to test reflexes!</p>
+                        </div>
+                        <div id="targetColourBox" class="w-24 h-24 mx-auto rounded-xl shadow-inner bg-red-500 transition"></div>
+                        <div id="colourScore" class="text-xs font-bold text-center">Score: 0</div>
+                        <div class="flex justify-center space-x-3 pt-2">
+                            <button onclick="checkColourGame('red')" id="cRed" class="px-4 py-2 rounded-xl bg-red-500 text-white text-xs font-bold">Red</button>
+                            <button onclick="checkColourGame('blue')" id="cBlue" class="px-4 py-2 rounded-xl bg-blue-500 text-white text-xs font-bold">Blue</button>
+                            <button onclick="checkColourGame('green')" id="cGreen" class="px-4 py-2 rounded-xl bg-green-500 text-white text-xs font-bold">Green</button>
+                        </div>
+                    </div>
+
+                    <!-- Game 4: Good Thought Jar -->
+                    <div id="game-thought" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm hidden">
+                        <div>
+                            <h3 id="tTitle" class="font-bold text-sm">✨ Good Thought Jar</h3>
+                            <p id="tDesc" class="text-xs text-slate-500 dark:text-slate-400">Draw a positive mental affirmation for instant mental upliftment.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-primary-50 dark:bg-primary-950/40 border border-primary-200 dark:border-primary-900 text-center">
+                            <p id="goodThoughtText" class="text-sm font-semibold text-primary-700 dark:text-primary-300 italic">"Every deep breath brings peace and radiant health."</p>
+                        </div>
+                        <button onclick="drawGoodThought()" id="tBtn" class="w-full py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl text-xs font-bold transition shadow-md">Draw New Thought ✨</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. First-Aid Guides Section -->
+            <section id="section-firstaid" class="flex-1 flex flex-col overflow-y-auto p-6 hidden space-y-6">
+                <div class="max-w-2xl mx-auto w-full space-y-6">
+                    <div>
+                        <h2 id="faHeading" class="text-xl font-bold">Emergency First-Aid Protocols</h2>
+                        <p id="faSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Standard medical guidelines with verified sources.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-2 shadow-sm">
+                            <h3 id="faCard1Title" class="font-bold text-sm text-primary-600 dark:text-primary-400">Wound Bleeding / रक्तस्राव</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="https://redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-primary-200 dark:border-primary-700 bg-primary-50 dark:bg-slate-800 text-xs font-semibold text-primary-700 dark:text-primary-300 hover:underline"><i class="fa-solid fa-book-open"></i><span>Read the guideline: British Red Cross</span></a>
+                                <a href="https://www.mayoclinic.org/first-aid/first-aid-severe-bleeding/basics/art-20056661" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-primary-200 dark:border-primary-700 bg-primary-50 dark:bg-slate-800 text-xs font-semibold text-primary-700 dark:text-primary-300 hover:underline"><i class="fa-solid fa-book-open"></i><span>Read the guideline: Mayo Clinic</span></a>
+                            </div>
+                            <p id="faCard1Steps" class="text-xs leading-relaxed text-slate-600 dark:text-slate-300">1. Apply direct firm pressure with sterile gauze.<br>2. Elevate wound above heart level.<br>3. <strong>Source:</strong> <a class="underline text-primary-700 dark:text-primary-300" href="https://redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily" target="_blank" rel="noopener">British Red Cross: Bleeding heavily</a>.</p>
+                        </div>
+                        <div class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-2 shadow-sm">
+                            <h3 id="faCard2Title" class="font-bold text-sm text-primary-600 dark:text-primary-400">Breathing Difficulty / सांस की तकलीफ</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="https://medlineplus.gov/ency/article/000007.htm" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-primary-200 dark:border-primary-700 bg-primary-50 dark:bg-slate-800 text-xs font-semibold text-primary-700 dark:text-primary-300 hover:underline"><i class="fa-solid fa-book-open"></i><span>Read the guideline: MedlinePlus</span></a>
+                                <a href="https://www.redcross.org.uk/first-aid/learn-first-aid/asthma-attack" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-primary-200 dark:border-primary-700 bg-primary-50 dark:bg-slate-800 text-xs font-semibold text-primary-700 dark:text-primary-300 hover:underline"><i class="fa-solid fa-book-open"></i><span>Read the guideline: British Red Cross</span></a>
+                            </div>
+                            <p id="faCard2Steps" class="text-xs leading-relaxed text-slate-600 dark:text-slate-300">1. Sit upright and loosen tight clothing around neck.<br>2. Use prescribed inhaler if diagnosed with asthma.<br>3. <strong>Source:</strong> <a class="underline text-primary-700 dark:text-primary-300" href="https://medlineplus.gov/ency/article/000007.htm" target="_blank" rel="noopener">MedlinePlus: Difficulty breathing, first aid</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Find help -->
+            <section id="section-help" class="flex-1 flex flex-col overflow-y-auto p-6 pb-24 hidden space-y-6">
+                <div class="max-w-2xl mx-auto w-full space-y-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100">Find help</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">In an emergency, call first. Don't wait for the chatbot.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="tel:112" class="block rounded-2xl p-4 text-center border border-rose-200 bg-rose-50 text-rose-800 dark:bg-rose-950/50 dark:border-rose-800 dark:text-rose-200">
+                            <i class="fa-solid fa-phone-volume text-xl"></i>
+                            <p class="font-bold mt-1">Call 112</p><p class="text-xs">All emergencies</p>
+                        </a>
+                        <a href="tel:108" class="block rounded-2xl p-4 text-center border border-rose-200 bg-rose-50 text-rose-800 dark:bg-rose-950/50 dark:border-rose-800 dark:text-rose-200">
+                            <i class="fa-solid fa-truck-medical text-xl"></i>
+                            <p class="font-bold mt-1">Ambulance</p><p class="text-xs">Call 108</p>
+                        </a>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl divide-y divide-slate-200 dark:divide-slate-700">
+                        <a href="https://www.google.com/maps/search/hospitals+near+me" target="_blank" rel="noopener" class="flex items-center gap-3 p-4">
+                            <i class="fa-solid fa-hospital text-primary-500 text-lg w-6 text-center"></i>
+                            <div class="flex-1"><p class="font-bold text-sm text-slate-900 dark:text-slate-100">Hospitals near me</p><p class="text-xs text-slate-600 dark:text-slate-300">Opens maps with your location</p></div>
+                            <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+                        </a>
+                        <a href="https://www.google.com/maps/search/psychiatrist+near+me" target="_blank" rel="noopener" class="flex items-center gap-3 p-4">
+                            <i class="fa-solid fa-brain text-primary-500 text-lg w-6 text-center"></i>
+                            <div class="flex-1"><p class="font-bold text-sm text-slate-900 dark:text-slate-100">Mental health help nearby</p><p class="text-xs text-slate-600 dark:text-slate-300">Clinics and psychiatrists</p></div>
+                            <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+                        </a>
+                    </div>
+                    <div id="locCard" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-2">
+                        <div class="flex items-center gap-3">
+                            <span id="locDot" class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm text-slate-900 dark:text-slate-100">Location</p>
+                                <p id="locStatus" class="text-xs text-slate-600 dark:text-slate-300">Location is off</p>
+                            </div>
+                            <button type="button" id="locBtn" onclick="msEnableLocation()" class="px-3 py-2 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold"><span>Turn on location</span></button>
+                        </div>
+                        <p id="locHelp" class="text-xs text-slate-600 dark:text-slate-300">Turn it on so maps can show hospitals near you and your emergency message can include where you are.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-3">
+                        <p class="text-xs font-semibold text-slate-600 dark:text-slate-300">Emergency contact</p>
+                        <div id="contactCardEmpty" class="space-y-3">
+                            <p class="text-sm text-slate-700 dark:text-slate-200">Someone you trust, who can help you in an emergency.</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">Tap the red button and your phone opens a message to them with your location. Nothing is sent until you press Send.</p>
+                            <button type="button" onclick="openContactModal()" class="w-full py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white text-sm font-bold"><i class="fa-solid fa-user-plus mr-2"></i><span>Add emergency contact</span></button>
+                        </div>
+                        <div id="contactCardFilled" class="space-y-3 hidden">
+                            <div class="flex items-center gap-3">
+                                <div id="contactInitial" class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-200 flex items-center justify-center font-bold"></div>
+                                <div class="flex-1 min-w-0"><p id="contactNameShow" class="font-bold text-sm text-slate-900 dark:text-slate-100 truncate"></p><p id="contactPhoneShow" class="text-xs text-slate-600 dark:text-slate-300"></p></div>
+                                <button type="button" onclick="openContactModal()" class="text-xs font-semibold text-primary-600 dark:text-primary-300">Change</button>
+                            </div>
+                            <button type="button" onclick="msSendLocation()" class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold"><i class="fa-solid fa-location-arrow mr-2"></i><span>I need help, send my location</span></button>
+                            <a id="contactCallLink" href="#" class="block w-full py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 text-center text-sm font-semibold text-slate-800 dark:text-slate-100"><i class="fa-solid fa-phone mr-2"></i><span>Call contact</span></a>
+                            <p id="contactStatus" class="text-xs text-slate-600 dark:text-slate-300 hidden"></p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-slate-600 dark:text-slate-300">Mental health support: Tele-MANAS 14416</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+<nav id="ms-bottom-nav" aria-label="Main navigation">
+ <button data-tab="home" class="active" onclick="switchTab('home')"><i class="fa-solid fa-house"></i><span>Home</span></button>
+ <button data-tab="chat" onclick="switchTab('chat');showChatMode('chat')"><i class="fa-regular fa-comment"></i><span>Talk</span></button>
+ <button data-tab="screener" onclick="switchTab('screener')"><i class="fa-solid fa-stethoscope"></i><span>Check</span></button>
+ <button data-tab="wellness" onclick="switchTab('wellness')"><i class="fa-regular fa-face-smile"></i><span>Calm</span></button>
+ <button data-tab="firstaid" onclick="switchTab('firstaid')"><i class="fa-solid fa-kit-medical"></i><span>First aid</span></button>
+ <button data-tab="help" onclick="switchTab('help')"><i class="fa-solid fa-life-ring"></i><span>Help</span></button>
+</nav>
+
+    <!-- Emergency contact modal -->
+    <div id="contactModal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center hidden p-4" onclick="if(event.target===this)closeContactModal()">
+        <div role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-md p-5 space-y-3 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h3 id="contactModalTitle" class="font-bold text-base text-slate-900 dark:text-slate-100">Emergency contact</h3>
+                <button type="button" onclick="closeContactModal()" aria-label="Close" class="w-8 h-8 rounded-lg text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-200">Someone you trust, who can help you in an emergency.</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300">Tap the red button and your phone opens a message to them with your location. Nothing is sent until you press Send.</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300">Saved only on this device.</p>
+            <div class="space-y-1"><label for="contactName" class="text-xs font-semibold text-slate-700 dark:text-slate-200">Name</label>
+                <input id="contactName" type="text" maxlength="40" autocomplete="off" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-slate-100"></div>
+            <div class="space-y-1"><label for="contactPhone" class="text-xs font-semibold text-slate-700 dark:text-slate-200">Phone number</label>
+                <input id="contactPhone" type="tel" inputmode="tel" maxlength="20" autocomplete="off" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-slate-100"></div>
+            <div class="space-y-1"><label for="contactRel" class="text-xs font-semibold text-slate-700 dark:text-slate-200">Relationship (optional)</label>
+                <input id="contactRel" type="text" maxlength="30" autocomplete="off" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-slate-100"></div>
+            <p id="contactError" class="text-xs font-semibold text-rose-600 dark:text-rose-300 hidden" role="alert"></p>
+            <div class="flex items-center gap-3 pt-1">
+                <button type="button" onclick="msSaveContact()" class="flex-1 py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white text-sm font-bold">Save contact</button>
+                <button type="button" id="contactRemoveBtn" onclick="msRemoveContact()" class="px-3 py-2.5 text-sm font-semibold text-rose-600 dark:text-rose-300 hidden">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat History Modal -->
+    <div id="historyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <h3 id="modalTitle" class="font-bold text-base">Chat History Manager</h3>
+                <button onclick="closeHistoryModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+            <div id="modalHistoryList" class="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+                <p id="modalEmptyText" class="text-xs text-slate-400 italic text-center py-6">No past chat history.</p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800">
+                <button onclick="deleteAllHistory()" id="btnDeleteAll" class="px-3 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-100 transition">Delete All History</button>
+                <button onclick="closeHistoryModal()" id="btnCloseModal" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-300 transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Scripts Integration in Correct Execution Order -->
+    <script>
+// Comprehensive Knowledge Base & Normalized Emergency Keywords
+const chatbotKnowledgeDocument = {
+    intents: [
+        {
+            category: "Greetings",
+            keywords: ['hi', 'hii', 'hiii', 'hello', 'helloo', 'hellooo', 'hey', 'heyy', 'namaste', 'greetings', 'hlo', 'नमस्ते', 'नमस्कार', 'प्रणाम'],
+            responseEn: "Hello! Welcome to ManoSaathi. How can I assist you with your health and wellness queries today?<br><br><strong>Source:</strong> <em>ManoSaathi AI Wellness Protocol</em>.",
+            responseHi: "नमस्ते, मैं मनोसाथी हूँ, आपकी क्या मदद कर सकता हूँ?<br><br><strong>स्रोत:</strong> <em>मनोसाथी AI स्वास्थ्य प्रोटोकॉल</em>."
+        },
+        {
+            category: "Headache Symptom",
+            keywords: ['headache', 'migraine', 'head pain', 'sar dard', 'sir dard', 'सर दर्द', 'सिरदर्द', 'माइग्रेन', 'दर्द हो रहा है'],
+            isTriageSymptom: true,
+            symptomNameEn: "Headache",
+            symptomNameHi: "सिरदर्द"
+        },
+        {
+            category: "Fever Symptom",
+            keywords: ['fever', 'temperature', 'hot body', 'bukhar', 'बुखार', 'तापमान', 'सर्दी और बुखार'],
+            isTriageSymptom: true,
+            symptomNameEn: "Fever & Cold",
+            symptomNameHi: "बुखार और सर्दी"
+        },
+        {
+            category: "Anxiety",
+            keywords: ['anxiety', 'ghabrahat', 'panic', 'stress', 'घबराहट', 'तनाव'],
+            responseEn: "I understand. Does this happen frequently or only today? Try taking slow, deep breaths.<br><br><strong>Source:</strong> <em>Tele-MANAS Mental Health Advisory</em>.",
+            responseHi: "मैं समझता हूँ। क्या आपको ऐसा अक्सर होता है या सिर्फ आज हो रहा है? कृपया गहरी साँस लें。<br><br><strong>स्रोत:</strong> <em>टेली-मानस मानसिक स्वास्थ्य सलाह</em>."
+        }
+    ],
+    emergencyKeywords: [
+        'severe', 'blood loss', 'injury', 'difficulty in breathing', 'breathing', 'emergency', 
+        'heart attack', 'chest pain', 'increasing', 'hurting alot', 'suicide', 'kill myself', 
+        'end my life', 'depressed', 'harm myself', 'overdose', 'poison', 'unconscious', 'fainting',
+        'सांस', 'सास', 'साँस', 'तकलीफ', 'तकलीफ़', 'दिक्कत', 'दिक्क़त', 'गंभीर', 'खून', 'चोट', 'सीने', 'छाती', 
+        'आपातकाल', 'आत्महत्या', 'मरना', 'खत्म'
+    ]
+};
+</script>
+    <script>
+// Interactive Games & Wellness Tools Logic
+
+let memoryCards = [], flippedCards = [], matchedPairsCount = 0;
+function initMemoryGame() {
+    const grid = document.getElementById('memoryGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    flippedCards = [];
+    matchedPairsCount = 0;
+    const statusEl = document.getElementById('memoryStatus');
+    if (statusEl) statusEl.innerText = currentLang === 'hi' ? "सभी मिलान वाले जोड़े खोजें!" : "Find all matching pairs!";
+    
+    const icons = ['fa-heart-pulse', 'fa-brain', 'fa-lungs', 'fa-shield-heart'];
+    memoryCards = [...icons, ...icons].sort(() => 0.5 - Math.random()).map((icon, index) => ({ id: index, icon: icon, flipped: false, matched: false }));
+    memoryCards.forEach((card, index) => {
+        const cardEl = document.createElement('div');
+        cardEl.id = `mCard-${index}`;
+        cardEl.className = "h-14 bg-slate-200 dark:bg-slate-700 rounded-xl flex items-center justify-center cursor-pointer text-slate-400 hover:bg-slate-300 transition text-lg";
+        cardEl.innerHTML = `<i class="fa-solid fa-question"></i>`;
+        cardEl.onclick = () => {
+            if (card.flipped || card.matched || flippedCards.length >= 2) return;
+            card.flipped = true;
+            flippedCards.push(card);
+            cardEl.className = "h-14 bg-white dark:bg-slate-900 border border-primary-500 rounded-xl flex items-center justify-center text-primary-500 text-lg shadow-inner";
+            cardEl.innerHTML = `<i class="fa-solid ${card.icon}"></i>`;
+            if (flippedCards.length === 2) {
+                if (flippedCards[0].icon === flippedCards[1].icon) {
+                    flippedCards[0].matched = flippedCards[1].matched = true;
+                    matchedPairsCount++;
+                    flippedCards = [];
+                    if (statusEl) statusEl.innerText = currentLang === 'hi' ? `मिलान जोड़े: ${matchedPairsCount} / 4` : `Matched Pairs: ${matchedPairsCount} / 4`;
+                    if (matchedPairsCount === 4 && statusEl) statusEl.innerText = currentLang === 'hi' ? "🎉 अद्भुत! आपने सभी जोड़े ढूंढ लिए!" : "🎉 Amazing! You found all pairs!";
+                } else {
+                    setTimeout(() => {
+                        flippedCards.forEach(c => {
+                            c.flipped = false;
+                            const el = document.getElementById(`mCard-${c.id}`);
+                            if (el) {
+                                el.className = "h-14 bg-slate-200 dark:bg-slate-700 rounded-xl flex items-center justify-center cursor-pointer text-slate-400 hover:bg-slate-300 transition text-lg";
+                                el.innerHTML = `<i class="fa-solid fa-question"></i>`;
+                            }
+                        });
+                        flippedCards = [];
+                    }, 800);
+                }
+            }
+        };
+        grid.appendChild(cardEl);
+    });
+}
+
+let hydrationCount = 0;
+function initHydrationGame() {
+    const container = document.getElementById('hydrationGameIcons');
+    if (!container) return;
+    container.innerHTML = '';
+    for (let i = 0; i < 8; i++) {
+        container.innerHTML += `<i class="fa-solid fa-glass-water text-xl ${i < hydrationCount ? 'text-blue-500' : 'text-slate-300 dark:text-slate-700'}"></i>`;
+    }
+    const statusEl = document.getElementById('hydrationStatus');
+    if (statusEl) statusEl.innerText = currentLang === 'hi' ? `प्रगति: ${hydrationCount} / 8 गिलास` : `Progress: ${hydrationCount} / 8 Glasses`;
+}
+function drinkWaterGame() { 
+    if (hydrationCount < 8) { 
+        hydrationCount++; 
+        initHydrationGame(); 
+    } 
+}
+
+let colourScore = 0, currentColour = 'red', colourBusy = false;
+function checkColourGame(chosen) {
+    if (colourBusy) return;
+    const hi = currentLang === 'hi';
+    const scoreEl = document.getElementById('colourScore');
+    const box = document.getElementById('targetColourBox');
+    const label = hi ? 'स्कोर' : 'Score';
+    if (chosen === currentColour) {
+        colourScore++;
+        if (scoreEl) scoreEl.innerText = `${label}: ${colourScore}`;
+        const cols = ['red', 'blue', 'green'];
+        currentColour = cols[Math.floor(Math.random() * cols.length)];
+        if (box) box.className = `w-24 h-24 mx-auto rounded-xl shadow-inner bg-${currentColour}-500 transition`;
+    } else {
+        // Wrong colour: shake the box and say so (score stays, no pressure)
+        colourBusy = true;
+        if (scoreEl) scoreEl.innerText = `${label}: ${colourScore} · ${hi ? 'सही नहीं, फिर कोशिश करें' : 'Not quite, try again'}`;
+        if (box && box.animate) box.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(-4px)'},{transform:'translateX(0)'}],{duration:300});
+        setTimeout(() => {
+            if (scoreEl) scoreEl.innerText = `${label}: ${colourScore}`;
+            colourBusy = false;
+        }, 900);
+    }
+}
+
+const thoughtsEn = ["Every deep breath brings peace and radiant health.", "My mind is calm, my body is strong and healing.", "I choose happiness, tranquility, and wellness today."];
+const thoughtsHi = ["हर गहरी साँस शांति और उत्तम स्वास्थ्य लाती है।", "मेरा मन शांत है, मेरा शरीर मजबूत और स्वस्थ हो रहा है।", "मैं आज खुशी और कल्याण चुनता हूँ।"];
+
+function drawGoodThought() {
+    const arr = currentLang === 'hi' ? thoughtsHi : thoughtsEn;
+    const thoughtEl = document.getElementById('goodThoughtText');
+    if (thoughtEl) thoughtEl.innerText = `"${arr[Math.floor(Math.random() * arr.length)]}"`;
+}
+</script>
+    <script>
+// Data Management & Chat History Persistence Layer
+
+function persistCurrentSession(query, reply) {
+    if (!currentSessionId) {
+        currentSessionId = Date.now();
+        chatSessions.unshift({
+            id: currentSessionId,
+            title: query,
+            messages: [
+                { sender: 'user', text: query },
+                { sender: 'ai', text: reply }
+            ]
+        });
+    } else {
+        let session = chatSessions.find(s => s.id === currentSessionId);
+        if (session) {
+            session.messages.push({ sender: 'user', text: query });
+            session.messages.push({ sender: 'ai', text: reply });
+        }
+    }
+    if (chatSessions.length > 25) chatSessions.pop();
+    const badge = document.getElementById('historyCountBadge');
+    if (badge) badge.innerText = chatSessions.length;
+}
+
+function renderHistoryModalList() {
+    const listContainer = document.getElementById('modalHistoryList');
+    if (!listContainer) return;
+    const t = i18n[currentLang];
+    const badge = document.getElementById('historyCountBadge');
+    if (badge) badge.innerText = chatSessions.length;
+    
+    if (chatSessions.length === 0) {
+        listContainer.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-6">${t.modalEmptyText}</p>`;
+        return;
+    }
+    listContainer.innerHTML = '';
+    chatSessions.forEach(session => {
+        const item = document.createElement('div');
+        item.className = "p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex items-center justify-between transition hover:border-primary-500";
+        item.innerHTML = `
+            <div class="cursor-pointer flex-1 truncate pr-3" onclick="loadHistorySession(${session.id})">
+                <div class="text-xs font-bold text-primary-600 dark:text-primary-400 truncate"><i class="fa-solid fa-comments text-[10px] mr-1.5"></i>${escapeHtml(session.title)}</div>
+                <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">${session.messages.length} messages in chat</div>
+            </div>
+            <button onclick="deleteSingleHistory(${session.id})" class="w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 flex items-center justify-center hover:bg-rose-100 transition flex-shrink-0" title="Delete">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+        `;
+        listContainer.appendChild(item);
+    });
+}
+
+function loadHistorySession(id) {
+    const session = chatSessions.find(s => s.id === id);
+    if (!session) return;
+    
+    currentSessionId = session.id;
+    const container = document.getElementById('chatMessages');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    session.messages.forEach(msg => {
+        appendMessage(msg.sender, msg.text, false);
+    });
+    
+    closeHistoryModal();
+    switchTab('chat');
+}
+
+function deleteSingleHistory(id) {
+    chatSessions = chatSessions.filter(s => s.id !== id);
+    if (currentSessionId === id) currentSessionId = null;
+    const badge = document.getElementById('historyCountBadge');
+    if (badge) badge.innerText = chatSessions.length;
+    renderHistoryModalList();
+}
+
+function deleteAllHistory() {
+    chatSessions = [];
+    currentSessionId = null;
+    const badge = document.getElementById('historyCountBadge');
+    if (badge) badge.innerText = '0';
+    renderHistoryModalList();
+}
+</script>
+    <script>
+let currentLang = 'en';
+let isDarkMode = false;
+let chatSessions = [];
+let activeSymptomContext = null; 
+let currentSessionId = null;
+let lastAdviceGiven = false;
+let awaitingBodyCheckResponse = false;
+
+// Language Dictionary for Full Website Localization
+const i18n = {
+    en: {
+        hdrSubtitle: "Your Empathetic Health & First-Aid Companion",
+        langLabel: "हिंदी / EN",
+        sosTitle: "Emergency Helplines",
+        sosSubtitle: "Instant help in India",
+        sos112: "112 - National Emergency",
+        sosManas: "14416 - Tele-MANAS (Mental Health)",
+        navChat: "AI Health Partner",
+        navScreener: "Symptom Screener",
+        navWellness: "Games & Wellness Tools",
+        navFirstAid: "First-Aid Guides",
+        chatHeaderTitle: "Manoसाथी AI Assistant",
+        chatHeaderSub: "Ask health queries in English or Hindi",
+        btnNewChat: "New Chat",
+        btnHistory: "History",
+        chatPlaceholder: "Type your health query / बीमारी या लक्षण यहाँ लिखें...",
+        welcomeMsg: "Hi, I’m ManoSaathi. This is a kind, private space to share what’s on your mind. What would you like to talk about today?",
+        scrHeading: "Quick Symptom Screener",
+        scrSub: "Select symptoms to get tailored orientation.",
+        chkBreathing: "Difficulty in breathing / सांस लेने में तकलीफ",
+        chkSevere: "Severe pain / गंभीर दर्द",
+        chkInjury: "Injury & Blood Loss / चोट और रक्तस्राव",
+        chkFever: "Fever & Cold / बुखार और सर्दी",
+        chkChest: "Chest pain / सीने में दर्द",
+        chkHeadache: "Headache / सिरदर्द",
+        chkVomiting: "Vomiting or loose motions / उल्टी या दस्त",
+        scrStep1: "Step 1: About you",
+        scrStep2: "Step 3: Your symptoms",
+        scrStepCond: "Step 2: How you feel right now",
+        scrInjuryLabel: "Injury",
+        optInjNone: "No injury",
+        optInjMinor: "Minor (cut, sprain, bruise)",
+        optInjSerious: "Serious (heavy bleeding, broken bone, head injury)",
+        scrPainLabel: "Pain",
+        optPainNone: "No pain",
+        optPainMild: "Mild to moderate pain",
+        optPainSevere: "Severe, unbearable pain",
+        scrAlertLabel: "How alert is the person?",
+        optAlertOk: "Alert and normal",
+        optAlertDrowsy: "Drowsy or confused",
+        optAlertPain: "Responds only to pain",
+        optAlertNone: "Not responding",
+        scrTempLabel: "Body temperature (optional)",
+        scrHRLabel: "Heart rate, beats per minute (optional)",
+        scrRRLabel: "Breathing rate, breaths per minute (optional)",
+        scrOptNote: "Leave temperature, heart rate and breathing rate blank if you can't measure them.",
+        scrAgeLabel: "Age (years)",
+        scrGenderLabel: "Gender",
+        optGenderSelect: "Select",
+        optFemale: "Female",
+        optMale: "Male",
+        optOther: "Other",
+        scrPregLabel: "Pregnant or could be pregnant",
+        btnAnalyze: "Analyze Symptoms",
+        wellHeading: "Interactive Games & Wellness Hub",
+        wellSub: "Engaging games and mindful tools for relaxation and brain health.",
+        gBtnMemory: "1. Memory Game",
+        gBtnHydration: "2. Hydration Game",
+        gBtnColour: "3. Colour Game",
+        gBtnThought: "4. Good Thought",
+        mTitle: "🧠 Memory Concentration Game",
+        mDesc: "Match pairs of health icons to train cognitive focus.",
+        mRestart: "Restart Game",
+        hTitle: "💧 Hydration Challenge Game",
+        hDesc: "Drink 8 glasses of water today! Click each glass as you drink.",
+        hBtn: "Drink a Glass 💧",
+        cTitle: "🎨 Colour Focus & Reaction Game",
+        cDesc: "Click the matching color box quickly to test reflexes!",
+        cRed: "Red", cBlue: "Blue", cGreen: "Green",
+        tTitle: "✨ Good Thought Jar",
+        tDesc: "Draw a positive mental affirmation for instant mental upliftment.",
+        tBtn: "Draw New Thought ✨",
+        faHeading: "Emergency First-Aid Protocols",
+        faSub: "Standard medical guidelines with verified sources.",
+        faCard1Title: "Wound Bleeding / रक्तस्राव",
+        faCard1Steps: "1. Apply direct firm pressure with sterile gauze.<br>2. Elevate wound above heart level.<br>3. <strong>Source:</strong> <a class=\"underline\" href=\"https://redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily\" target=\"_blank\" rel=\"noopener\">British Red Cross: Bleeding heavily</a>.",
+        faCard2Title: "Breathing Difficulty / सांस की तकलीफ",
+        faCard2Steps: "1. Sit upright and loosen tight clothing around neck.<br>2. Use prescribed inhaler if diagnosed with asthma.<br>3. <strong>Source:</strong> <a class=\"underline\" href=\"https://medlineplus.gov/ency/article/000007.htm\" target=\"_blank\" rel=\"noopener\">MedlinePlus: Difficulty breathing, first aid</a>.",
+        modalTitle: "Chat History Manager",
+        modalEmptyText: "No past chat history.",
+        btnDeleteAll: "Delete All History",
+        btnCloseModal: "Close"
+    },
+    hi: {
+        hdrSubtitle: "आपका सहानुभूतिपूर्ण स्वास्थ्य और प्राथमिक चिकित्सा साथी",
+        langLabel: "ENGLISH / HI",
+        sosTitle: "आपातकालीन हेल्पलाइन",
+        sosSubtitle: "भारत में त्वरित सहायता",
+        sos112: "112 - राष्ट्रीय आपातकाल",
+        sosManas: "14416 - टेली-मानस (मानसिक स्वास्थ्य)",
+        navChat: "एआई स्वास्थ्य पार्टनर",
+        navScreener: "लक्षण screener (जांच)",
+        navWellness: "गेम्स और कल्याण उपकरण",
+        navFirstAid: "प्राथमिक चिकित्सा गाइड",
+        chatHeaderTitle: "मनोसाथी AI सहायक",
+        chatHeaderSub: "अंग्रेजी या हिंदी में स्वास्थ्य प्रश्न पूछें",
+        btnNewChat: "नया चैट",
+        btnHistory: "इतिहास",
+        chatPlaceholder: "बीमारी या लक्षण यहाँ लिखें...",
+        welcomeMsg: "नमस्ते! मैं मनोसाथी हूँ। आप मुझसे किसी भी बीमारी, लक्षणों या स्वास्थ्य मार्गदर्शन के बारे में अंग्रेजी या हिंदी में पूछ सकते हैं।",
+        scrHeading: "त्वरित लक्षण जांच (Symptom Screener)",
+        scrSub: "उचित मार्गदर्शन पाने के लिए अपने लक्षण चुनें।",
+        chkBreathing: "सांस लेने में तकलीफ / Difficulty in breathing",
+        chkSevere: "गंभीर दर्द / Severe pain",
+        chkInjury: "चोट और रक्तस्राव / Injury & Blood Loss",
+        chkFever: "बुखार और सर्दी / Fever & Cold",
+        chkChest: "सीने में दर्द / Chest pain",
+        chkHeadache: "सिरदर्द / Headache",
+        chkVomiting: "उल्टी या दस्त / Vomiting or loose motions",
+        scrStep1: "चरण 1: आपके बारे में",
+        scrStep2: "चरण 3: आपके लक्षण",
+        scrStepCond: "चरण 2: अभी आपकी स्थिति",
+        scrInjuryLabel: "चोट",
+        optInjNone: "कोई चोट नहीं",
+        optInjMinor: "हल्की (कटना, मोच, नील)",
+        optInjSerious: "गंभीर (ज़्यादा खून, टूटी हड्डी, सिर में चोट)",
+        scrPainLabel: "दर्द",
+        optPainNone: "कोई दर्द नहीं",
+        optPainMild: "हल्का से मध्यम दर्द",
+        optPainSevere: "तेज़, असहनीय दर्द",
+        scrAlertLabel: "व्यक्ति कितना सचेत है?",
+        optAlertOk: "सचेत और सामान्य",
+        optAlertDrowsy: "उनींदा या भ्रमित",
+        optAlertPain: "केवल दर्द पर प्रतिक्रिया",
+        optAlertNone: "कोई प्रतिक्रिया नहीं",
+        scrTempLabel: "शरीर का तापमान (वैकल्पिक)",
+        scrHRLabel: "दिल की धड़कन प्रति मिनट (वैकल्पिक)",
+        scrRRLabel: "सांस की दर प्रति मिनट (वैकल्पिक)",
+        scrOptNote: "अगर आप तापमान, धड़कन या सांस की दर नहीं माप सकते तो खाली छोड़ दें।",
+        scrAgeLabel: "उम्र (वर्ष)",
+        scrGenderLabel: "लिंग",
+        optGenderSelect: "चुनें",
+        optFemale: "महिला",
+        optMale: "पुरुष",
+        optOther: "अन्य",
+        scrPregLabel: "गर्भवती हैं या हो सकती हैं",
+        btnAnalyze: "लक्षणों का विश्लेषण करें",
+        wellHeading: "इंटरैक्टिव गेम्स और वेलनेस हब",
+        wellSub: "मन की शांति और मस्तिष्क स्वास्थ्य के लिए आकर्षक गेम्स।",
+        gBtnMemory: "1. मेमोरी गेम",
+        gBtnHydration: "2. हाइड्रेशन गेम",
+        gBtnColour: "3. रंग गेम",
+        gBtnThought: "4. अच्छा विचार",
+        mTitle: "🧠 मेमोरी एकाग्रता गेम",
+        mDesc: "संज्ञानात्मक फोकस को प्रशिक्षित करने के लिए स्वास्थ्य आइकन का मिलान करें।",
+        mRestart: "गेम पुनः आरंभ करें",
+        hTitle: "💧 हाइड्रेशन चैलेंज गेम",
+        hDesc: "आज 8 गिलास पानी पिएँ! पीने के साथ प्रत्येक गिलास पर क्लिक करें।",
+        hBtn: "एक गिलास पिएँ 💧",
+        cTitle: "🎨 रंग फोकस और प्रतिक्रिया गेम",
+        cDesc: "प्रतिबिंबों का परीक्षण करने के लिए मिलान वाले रंग बॉक्स पर जल्दी से क्लिक करें!",
+        cRed: "लाल", cBlue: "नीला", cGreen: "हरा",
+        tTitle: "✨ अच्छा विचार जार",
+        tDesc: "तत्काल मानसिक उत्थान के लिए एक सकारात्मक मानसिक पुष्टि प्राप्त करें।",
+        tBtn: "नया विचार निकालें ✨",
+        faHeading: "आपातकालीन प्राथमिक चिकित्सा प्रोटोकॉल",
+        faSub: "सत्यापित स्रोतों के साथ मानक चिकित्सा दिशानिर्देश।",
+        faCard1Title: "घाव से रक्तस्राव / Wound Bleeding",
+        faCard1Steps: "1. स्टरलाइज्ड गॉज से सीधा और दृढ़ दबाव डालें।<br>2. घाव को हृदय स्तर से ऊपर उठाएं।<br>3. <strong>स्रोत:</strong> <a class=\"underline\" href=\"https://redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily\" target=\"_blank\" rel=\"noopener\">British Red Cross: Bleeding heavily</a>।",
+        faCard2Title: "सांस लेने में तकलीफ / Breathing Difficulty",
+        faCard2Steps: "1. सीधे बैठें और गर्दन के पास के तंग कपड़ों को ढीला करें।<br>2. अस्थमा होने पर निर्धारित इन्हेलर का प्रयोग करें।<br>3. <strong>स्रोत:</strong> <a class=\"underline\" href=\"https://medlineplus.gov/ency/article/000007.htm\" target=\"_blank\" rel=\"noopener\">MedlinePlus: Difficulty breathing, first aid</a>।",
+        modalTitle: "चैट इतिहास प्रबंधक",
+        modalEmptyText: "कोई पिछला चैट इतिहास नहीं है.",
+        btnDeleteAll: "सभी इतिहास हटाएं",
+        btnCloseModal: "बंद करें"
+    }
+};
+
+function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'hi' : 'en';
+    const t = i18n[currentLang];
+    
+    const setElemText = (id, text) => { const el = document.getElementById(id); if (el) el.innerText = text; };
+    const setElemHtml = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+
+    setElemText('hdrSubtitle', t.hdrSubtitle);
+    setElemText('langLabel', t.langLabel);
+    setElemText('sosTitle', t.sosTitle);
+    setElemText('sosSubtitle', t.sosSubtitle);
+    setElemHtml('sos112', `<span class="font-bold">112</span> - ${currentLang === 'hi' ? 'राष्ट्रीय आपातकाल' : 'National Emergency'} <i class="fa-solid fa-chevron-right text-[10px]"></i>`);
+    setElemHtml('sosManas', `<span class="font-bold">14416</span> - ${currentLang === 'hi' ? 'टेली-मानस' : 'Tele-MANAS'} <i class="fa-solid fa-chevron-right text-[10px]"></i>`);
+    
+    setElemText('navChat', t.navChat);
+    setElemText('navScreener', t.navScreener);
+    setElemText('navWellness', t.navWellness);
+    setElemText('navFirstAid', t.navFirstAid);
+    
+    setElemText('chatHeaderTitle', t.chatHeaderTitle);
+    setElemText('chatHeaderSub', t.chatHeaderSub);
+    setElemText('btnNewChat', t.btnNewChat);
+    setElemText('btnHistory', t.btnHistory);
+    
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) chatInput.placeholder = t.chatPlaceholder;
+    
+    const welcomeEl = document.getElementById('welcomeMessageEl');
+    if (welcomeEl && document.querySelectorAll('#chatMessages > div').length === 1) {
+        welcomeEl.innerText = t.welcomeMsg;
+    }
+
+    setElemText('scrHeading', t.scrHeading);
+    setElemText('scrSub', t.scrSub);
+    setElemText('chkBreathing', t.chkBreathing);
+    setElemText('chkSevere', t.chkSevere);
+    setElemText('chkInjury', t.chkInjury);
+    setElemText('chkFever', t.chkFever);
+    setElemText('chkChest', t.chkChest);
+    setElemText('chkHeadache', t.chkHeadache);
+    setElemText('chkVomiting', t.chkVomiting);
+    setElemText('scrStep1', t.scrStep1);
+    setElemText('scrStep2', t.scrStep2);
+    setElemText('scrStepCond', t.scrStepCond);
+    setElemText('scrInjuryLabel', t.scrInjuryLabel);
+    setElemText('optInjNone', t.optInjNone);
+    setElemText('optInjMinor', t.optInjMinor);
+    setElemText('optInjSerious', t.optInjSerious);
+    setElemText('scrPainLabel', t.scrPainLabel);
+    setElemText('optPainNone', t.optPainNone);
+    setElemText('optPainMild', t.optPainMild);
+    setElemText('optPainSevere', t.optPainSevere);
+    setElemText('scrAlertLabel', t.scrAlertLabel);
+    setElemText('optAlertOk', t.optAlertOk);
+    setElemText('optAlertDrowsy', t.optAlertDrowsy);
+    setElemText('optAlertPain', t.optAlertPain);
+    setElemText('optAlertNone', t.optAlertNone);
+    setElemText('scrTempLabel', t.scrTempLabel);
+    setElemText('scrHRLabel', t.scrHRLabel);
+    setElemText('scrRRLabel', t.scrRRLabel);
+    setElemText('scrOptNote', t.scrOptNote);
+    setElemText('scrAgeLabel', t.scrAgeLabel);
+    setElemText('scrGenderLabel', t.scrGenderLabel);
+    setElemText('optGenderSelect', t.optGenderSelect);
+    setElemText('optFemale', t.optFemale);
+    setElemText('optMale', t.optMale);
+    setElemText('optOther', t.optOther);
+    setElemText('scrPregLabel', t.scrPregLabel);
+    setElemText('btnAnalyze', t.btnAnalyze);
+
+    setElemText('wellHeading', t.wellHeading);
+    setElemText('wellSub', t.wellSub);
+    setElemText('gBtn-memory', t.gBtnMemory);
+    setElemText('gBtn-hydration', t.gBtnHydration);
+    setElemText('gBtn-colour', t.gBtnColour);
+    setElemText('gBtn-thought', t.gBtnThought);
+    
+    setElemText('mTitle', t.mTitle);
+    setElemText('mDesc', t.mDesc);
+    setElemText('mRestart', t.mRestart);
+    setElemText('hTitle', t.hTitle);
+    setElemText('hDesc', t.hDesc);
+    setElemText('hBtn', t.hBtn);
+    setElemText('cTitle', t.cTitle);
+    setElemText('cDesc', t.cDesc);
+    setElemText('cRed', t.cRed);
+    setElemText('cBlue', t.cBlue);
+    setElemText('cGreen', t.cGreen);
+    setElemText('tTitle', t.tTitle);
+    setElemText('tDesc', t.tDesc);
+    setElemText('tBtn', t.tBtn);
+
+    setElemText('faHeading', t.faHeading);
+    setElemText('faSub', t.faSub);
+    setElemText('faCard1Title', t.faCard1Title);
+    setElemHtml('faCard1Steps', t.faCard1Steps);
+    setElemText('faCard2Title', t.faCard2Title);
+    setElemHtml('faCard2Steps', t.faCard2Steps);
+
+    setElemText('modalTitle', t.modalTitle);
+    setElemText('modalEmptyText', t.modalEmptyText);
+    setElemText('btnDeleteAll', t.btnDeleteAll);
+    setElemText('btnCloseModal', t.btnCloseModal);
+}
+
+function toggleDarkMode() {
+    isDarkMode = !isDarkMode;
+    document.documentElement.classList.toggle('dark', isDarkMode);
+    const themeIcon = document.getElementById('themeIcon');
+    if (themeIcon) {
+        themeIcon.className = isDarkMode ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon';
+    }
+}
+
+function switchTab(tabId) {
+    ['chat', 'screener', 'wellness', 'firstaid'].forEach(id => {
+        const sec = document.getElementById(`section-${id}`);
+        const btn = document.getElementById(`tabBtn-${id}`);
+        if (sec) {
+            sec.classList.add('hidden');
+            sec.classList.remove('flex');
+        }
+        if (btn) {
+            btn.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800";
+        }
+    });
+    const activeSec = document.getElementById(`section-${tabId}`);
+    const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+    if (activeSec) {
+        activeSec.classList.remove('hidden');
+        activeSec.classList.add('flex');
+    }
+    if (activeBtn) {
+        activeBtn.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition bg-primary-500 text-white shadow-md shadow-primary-500/20";
+    }
+    if (tabId === 'wellness' && typeof startGames === 'function') startGames();
+}
+
+function sendQuickPrompt(txt) {
+    const hiMap = {
+        'I feel stressed and overwhelmed': 'मुझे बहुत तनाव और भारीपन महसूस हो रहा है',
+        'I cannot sleep and my mind is busy': 'मुझे नींद नहीं आ रही और मन में बहुत विचार चल रहे हैं',
+        'I need someone to listen to me': 'मुझे कोई चाहिए जो मेरी बात सुने',
+        'I want to talk about my feelings': 'मुझे अपनी भावनाओं के बारे में बात करनी है'
+    };
+    if (typeof currentLang !== 'undefined' && currentLang === 'hi' && hiMap[txt]) txt = hiMap[txt];
+    const chatInput = document.getElementById('chatInput');
+    const chatForm = document.getElementById('chatForm');
+    if (chatInput && chatForm) {
+        chatInput.value = txt;
+        chatForm.dispatchEvent(new Event('submit'));
+    }
+}
+
+function openHistoryModal() {
+    renderHistoryModalList();
+    const modal = document.getElementById('historyModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeHistoryModal() {
+    const modal = document.getElementById('historyModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function startNewChat() {
+    currentSessionId = null;
+    deleteCurrentChat();
+    closeHistoryModal();
+}
+
+function deleteCurrentChat() {
+    const t = i18n[currentLang];
+    const container = document.getElementById('chatMessages');
+    if (container) {
+        container.innerHTML = `
+            <div class="flex items-start space-x-3">
+                <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white flex-shrink-0">
+                    <i class="fa-solid fa-robot text-xs"></i>
+                </div>
+                <div id="welcomeMessageEl" class="bg-slate-100 dark:bg-slate-800 p-3.5 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed">
+                    ${t.welcomeMsg}
+                </div>
+            </div>
+        `;
+    }
+    activeSymptomContext = null;
+    currentSessionId = null;
+    lastAdviceGiven = false;
+    awaitingBodyCheckResponse = false;
+}
+
+function handleChatSubmit(e) {
+    e.preventDefault();
+    const input = document.getElementById('chatInput');
+    if (!input) return;
+    const message = input.value.trim();
+    if (!message) return;
+
+    appendMessage('user', message);
+    input.value = '';
+
+    const lower = message.toLowerCase();
+    const typingId = appendTypingIndicator();
+
+    setTimeout(() => {
+        removeTypingIndicator(typingId);
+
+        // 1. Check for Emergency Keywords first
+        const isEmergency = chatbotKnowledgeDocument.emergencyKeywords.some(kw => lower.includes(kw));
+        if (isEmergency) {
+            activeSymptomContext = null;
+            lastAdviceGiven = false;
+            awaitingBodyCheckResponse = false;
+            let alertHtml = `
+                <div class="p-3 rounded-xl bg-rose-500 text-white space-y-2 shadow-md">
+                    <div class="flex items-center space-x-2 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>CRITICAL EMERGENCY ALERT / आपातकालीन चेतावनी</span>
+                    </div>
+                    <p class="text-xs">Please contact National Emergency Services immediately at <strong>112</strong> or Tele-MANAS at <strong>14416</strong>.<br>तुरंत राष्ट्रीय आपातकालीन सेवा 112 या टेली-मानस 14416 पर संपर्क करें।</p>
+                    <div class="text-[11px] opacity-90 pt-1 border-t border-rose-400"><strong>Source:</strong> <em>National Emergency Response Guidelines, India</em>.</div>
+                </div>
+            `;
+            appendMessage('ai', alertHtml);
+            persistCurrentSession(message, alertHtml);
+            return;
+        }
+
+        // 2. Check for Negative Mood
+        const negativeMoodVariants = [
+            'i am not feeling good', 'im not feeling good', 'not feeling good', 'i feel bad', 'feeling sick', 'feeling down', 'not doing well', 'i am sad',
+            'मुझे ठीक नहीं लग रहा है', 'तबीयत ठीक नहीं है', 'अच्छा महसूस नहीं हो रहा', 'मुझसे नहीं रहा जा रहा', 'मैं उदास हूँ', 'मुझे आज अच्छा नहीं लग रहा है'
+        ];
+        const isNegativeMood = negativeMoodVariants.some(v => lower.includes(v));
+
+        if (isNegativeMood) {
+            awaitingBodyCheckResponse = true;
+            let isHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            let negReply = isHindi
+                ? "क्या आपके शरीर में कोई समस्या या दर्द महसूस हो रहा है?"
+                : "Did something happen or are you feeling some kind of problem in your body?";
+            
+            appendMessage('ai', negReply);
+            persistCurrentSession(message, negReply);
+            return;
+        }
+
+        // 3. Check for Positive Mood
+        const positiveMoodVariants = [
+            'i am feeling good', 'im feeling good', 'feeling good', 'i am doing great', 'i feel good', 'feeling great', 'i am fine', 'im fine', 'doing well', 'i am happy',
+            'मुझे आज अच्छा लग रहा है', 'मैं अच्छा महसूस कर रहा हूँ', 'मैं ठीक हूँ', 'बहुत अच्छा लग रहा है', 'मैं बहुत अच्छा हूँ', 'सब ठीक है'
+        ];
+        const isPositiveMood = positiveMoodVariants.some(v => lower.includes(v));
+
+        if (isPositiveMood) {
+            let isHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            let posReply = isHindi
+                ? "मुझे यह जानके बहुत ख़ुशी हुई, अगर भविष्य में आपको कोई तकलीफ़ हो तो मैं हमेशा आपकी मदद के लिए हूँ।"
+                : "That's good to hear! In future if you have any problem I am always here to help you.";
+            
+            appendMessage('ai', posReply);
+            persistCurrentSession(message, posReply);
+            return;
+        }
+
+        // 4. Handle follow-up response if awaiting body check after negative mood
+        if (awaitingBodyCheckResponse) {
+            awaitingBodyCheckResponse = false;
+            let isHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            let isNoBodyProblem = /no|nahi|nahin|nope|nah|नहीं|न|ना|स्वास्थ्य से जुड़ा नहीं है/i.test(lower);
+
+            let followReply = "";
+            if (isNoBodyProblem) {
+                followReply = isHindi
+                    ? "क्या आप किसी ऐसी बात के बारे में बात करना चाहते हैं जो आपको ऐसा महसूस करा रही है? अगर नहीं, तो आप भविष्य में मुझे बता सकते हैं, मैं मदद के लिए हमेशा यहाँ हूँ। साथ ही, अगर आप अपना ध्यान भटकाना चाहते हैं और अपना मूड अच्छा करना चाहते हैं, तो आप हमारे गेम्स और वेलनेस टूल्स ट्राई कर सकते हैं।"
+                    : "Do you wanna talk about something which is making you feel like that? If not, you can tell me in future I am always here to help you, and if you want to remove your focus and want to boost your mood you can try our games and wellness tools.";
+            } else {
+                followReply = isHindi
+                    ? "मैं समझ सकता हूँ। कृपया मुझे अपने लक्षण विस्तार से बताएं ताकि मैं आपका सही मार्गदर्शन कर सकूँ।"
+                    : "I understand. Please share more details about your physical discomfort so I can help guide you properly.";
+            }
+
+            appendMessage('ai', followReply);
+            persistCurrentSession(message, followReply);
+            return;
+        }
+
+        // 5. Check for Gratitude / Conversational Closing
+        const gratitudeKeywords = ['thank you', 'thanks', 'thx', 'thank u', 'thanku', 'appreciate it', 'many thanks', 'धन्यवाद', 'शुक्रिया', 'थैंक यू', 'बहुत धन्यवाद', 'धन्यवाद्'];
+        const isGratitude = gratitudeKeywords.some(kw => lower.includes(kw));
+        
+        if (isGratitude && lastAdviceGiven) {
+            lastAdviceGiven = false;
+            let isHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            let gratitudeReply = isHindi
+                ? "आपका बहुत-बहुत स्वागत है! मुझे खुशी है कि अब आप ठीक हैं और भविष्य में यदि आपको फिर कभी ऐसी किसी समस्या का सामना करना पड़े, तो मैं हमेशा यहाँ हूँ।"
+                : "You're most welcome! I am glad you are okay now and in future if you face something like that again I am always here.";
+            
+            appendMessage('ai', gratitudeReply);
+            persistCurrentSession(message, gratitudeReply);
+            return;
+        }
+
+        // 6. Handle Active Symptom Context
+        if (activeSymptomContext) {
+            let symptomObj = activeSymptomContext;
+            activeSymptomContext = null; 
+
+            let reply = "";
+            let isHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            let symName = isHindi ? symptomObj.symptomNameHi : symptomObj.symptomNameEn;
+
+            if (lower.includes('hour') || lower.includes('ghante') || lower.includes('घंटे') || lower.includes('ghanta') || lower.includes('just') || lower.includes('abhi') || lower.includes('अभी')) {
+                reply = isHindi 
+                    ? `<strong>शुरुआती चरण (${message}) - ${symName} मार्गदर्शन:</strong><br><br>- चूंकि समस्या अभी शुरू हुई है, गुनगुना पानी पिएं, आराम करें और खुद को गर्म रखें。<br>- ठंडी चीजों से बचें और शरीर के तापमान पर नजर रखें。<br><br><strong>स्रोत:</strong> <em>Ministry of Health & Family Welfare Guidelines</em>.`
+                    : `<strong>Early Stage (${message}) - ${symName} Guidance:</strong><br><br>- Since it just started, stay warm, sip warm water, and get plenty of rest.<br>- Avoid cold beverages and monitor your condition.<br><br><strong>Source:</strong> <em>Ministry of Health & Family Welfare Guidelines</em>.`;
+            } else if (lower.includes('mild') || lower.includes('halka') || lower.includes('thoda') || lower.includes('slight') || lower.includes('हल्का') || lower.includes('थोड़ा')) {
+                reply = isHindi
+                    ? `<strong>हल्का ${symName} मार्गदर्शन:</strong><br><br>- पर्याप्त आराम करें, भाप लें और हल्का पौष्टिक भोजन लें。<br>- बिना डॉक्टर की सलाह के भारी एंटीबायोटिक्स न लें。<br><br><strong>स्रोत:</strong> <i>Clinical First-Aid Standard Protocol</i>.`
+                    : `<strong>Mild ${symName} Guidance:</strong><br><br>- Take adequate rest, do steam inhalation, and eat light nutritious food.<br>- Avoid heavy self-medication.<br><br><strong>Source:</strong> <i>Clinical First-Aid Standard Protocol</i>.`;
+            } else if (lower.includes('day') || lower.includes('din') || lower.includes('dinon') || lower.includes('week') || lower.includes('hafte') || lower.includes('दिन') || lower.includes('हफ्ते') || lower.includes('से')) {
+                reply = isHindi
+                    ? `<strong>पुराना या 2+ दिन का ${symName} मार्गदर्शन (${message}):</strong><br><br>- लक्षण लंबे समय तक रहने पर कृपया किसी योग्य चिकित्सक (Doctor) से परामर्श लें。<br>- हाइड्रेटेड रहें और भारी भोजन से बचें。<br><br><strong>स्रोत:</strong> <em>WHO Clinical Management Protocol</em>.`
+                    : `<strong>Prolonged ${symName} Guidance (${message}):</strong><br><br>- Since this has lasted more than a day, please consult a qualified physician.<br>- Stay hydrated and avoid heavy meals.<br><br><strong>Source:</strong> <em>WHO Clinical Management Protocol</em>.`;
+            } else {
+                reply = isHindi
+                    ? `<strong>${symName} के लिए विशेष सलाह:</strong><br><br>- पर्याप्त आराम करें, गुनगुना पानी पिएं और अगले 24 घंटे स्थिति पर नजर रखें। यदि दर्द बढ़े तो डॉक्टर से मिलें。<br><br><strong>स्रोत:</strong> <em>ManoSaathi Clinical Advisory</em>.`
+                    : `<strong>Tailored Guidance for your ${symName}:</strong><br><br>- Maintain good hydration, rest adequately, and monitor symptoms over the next 24 hours. Consult a doctor if pain increases.<br><br><strong>Source:</strong> <em>ManoSaathi Clinical Advisory</em>.`;
+            }
+
+            lastAdviceGiven = true;
+            appendMessage('ai', reply);
+            persistCurrentSession(message, reply);
+            return;
+        }
+
+        // 7. Match Intent from Knowledge Document
+        let matchedIntent = chatbotKnowledgeDocument.intents.find(intent => 
+            intent.keywords.some(keyword => lower.includes(keyword.toLowerCase()))
+        );
+
+        if (matchedIntent) {
+            let isUserHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            
+            if (matchedIntent.isTriageSymptom) {
+                activeSymptomContext = matchedIntent;
+                let followupReply = isUserHindi
+                    ? `मैं समझ सकता हूँ। यह ${matchedIntent.symptomNameHi} आपको कब से है (जैसे: 2 घंटे से, या 2 दिन से) और यह कितना गंभीर है? कृपया बताएं।`
+                    : `I understand. Could you please share how long you have been experiencing this ${matchedIntent.symptomNameEn} (e.g., since 2 hours, or for 2 days) and how severe it feels?`;
+                appendMessage('ai', followupReply);
+                persistCurrentSession(message, followupReply);
+            } else {
+                let reply = isUserHindi ? matchedIntent.responseHi : matchedIntent.responseEn;
+                if (!matchedIntent.category.includes('Greetings')) {
+                    lastAdviceGiven = true;
+                }
+                appendMessage('ai', reply);
+                persistCurrentSession(message, reply);
+            }
+        } else {
+            let isHealthQuery = /pain|ache|fever|cough|cold|sick|disease|medicine|doctor|hospital|dard|bukhar|bimari|dawai|डॉक्टर|बीमारी|दर्द|बुखार|खांसी|जुकाम|तबीयत/i.test(message);
+            let isHindi = (currentLang === 'hi' || /[\u0900-\u097F]/.test(message));
+            let fallback = "";
+
+            if (isHealthQuery) {
+                fallback = isHindi 
+                    ? `आपके प्रश्न ("${message}") के संबंध में:<br><br>- <strong>सुझाव:</strong> पर्याप्त आराम करें, गुनगुना पानी पिएं और हल्का भोजन लें。<br>- बिना डॉक्टर की सलाह के दवा न लें。<br><br><strong>स्रोत:</strong> <i>Standard Health Companion Guidance</i>.`
+                    : `Regarding your query ("${message}"):<br><br>- <strong>Recommendation:</strong> Get adequate rest, maintain hydration with warm water, and eat light nutritious meals.<br>- Avoid self-medication and monitor your symptoms.<br><br><strong>Source:</strong> <i>Standard Health Companion Guidance</i>.`;
+                lastAdviceGiven = true;
+            } else {
+                fallback = isHindi
+                    ? `मैं समझ गया। क्या स्वास्थ्य से जुड़ा कोई सवाल है या मैं किसी लक्षण (जैसे पेट दर्द, सिरदर्द, बुखार) में आपकी मदद कर सकता हूँ?`
+                    : `Got it! Is there any specific health query or symptom (like stomach pain, headache, fever) I can help you triage today?`;
+                lastAdviceGiven = false;
+            }
+            
+            appendMessage('ai', fallback);
+            persistCurrentSession(message, fallback);
+        }
+
+    }, 700);
+}
+
+function appendMessage(sender, text, shouldScroll = true) {
+    const container = document.getElementById('chatMessages');
+    if (!container) return;
+    const div = document.createElement('div');
+    div.className = `flex items-start space-x-3 ${sender === 'user' ? 'justify-end' : ''}`;
+    
+    if (sender === 'user') {
+        div.innerHTML = `<div class="bg-primary-500 text-white p-3.5 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed shadow-sm">${escapeHtml(text)}</div><div class="w-8 h-8 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 flex-shrink-0"><i class="fa-solid fa-user text-xs"></i></div>`;
+    } else {
+        div.innerHTML = `<div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white flex-shrink-0"><i class="fa-solid fa-robot text-xs"></i></div><div class="bg-slate-100 dark:bg-slate-800 p-3.5 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed shadow-sm">${text}</div>`;
+    }
+    container.appendChild(div);
+    if (shouldScroll) {
+        container.scrollTop = container.scrollHeight;
+    }
+}
+
+function appendTypingIndicator() {
+    const container = document.getElementById('chatMessages');
+    if (!container) return null;
+    const id = 'typing-' + Date.now();
+    const div = document.createElement('div');
+    div.id = id;
+    div.className = `flex items-start space-x-3`;
+    div.innerHTML = `<div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white flex-shrink-0"><i class="fa-solid fa-robot text-xs"></i></div><div class="bg-slate-100 dark:bg-slate-800 p-3.5 rounded-2xl rounded-tl-none space-x-1 flex items-center"><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]"></div></div>`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return id;
+}
+
+function removeTypingIndicator(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+}
+
+function escapeHtml(text) {
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+function togglePregnancy() {
+    const age = parseInt(document.getElementById('scrAge').value, 10);
+    const gender = document.getElementById('scrGender').value;
+    const show = gender === 'female' && age >= 12 && age <= 50;
+    const wrap = document.getElementById('scrPregWrap');
+    if (wrap) wrap.classList.toggle('hidden', !show);
+    if (!show) document.getElementById('scrPregnant').checked = false;
+}
+
+function evaluateSymptoms() {
+    const res = document.getElementById('screenerResult');
+    if (!res) return;
+    res.classList.remove('hidden');
+    const hi = currentLang === 'hi';
+    const L = (en, h) => (hi ? h : en);
+    const val = id => document.getElementById(id).value;
+    const num = id => { const v = val(id).trim(); return v === '' ? null : parseFloat(v); };
+    const fail = (en, h) => { res.innerHTML = L(en, h); };
+
+    // Step 1: age and gender
+    const age = parseInt(val('scrAge'), 10);
+    const gender = val('scrGender');
+    if (isNaN(age) || age < 0 || age > 120) return fail('Please enter a valid age (0 to 120).', 'कृपया सही उम्र (0 से 120) दर्ज करें।');
+    if (!gender) return fail('Please select your gender.', 'कृपया अपना लिंग चुनें।');
+    const pregnant = document.getElementById('scrPregnant').checked;
+
+    // Step 2: how you feel right now
+    const injury = val('scrInjury'), pain = val('scrPain'), alertness = val('scrAlert');
+    let temp = num('scrTemp');
+    const hr = num('scrHR'), rr = num('scrRR');
+    if (temp !== null) {
+        if (val('scrTempUnit') === 'F') temp = (temp - 32) * 5 / 9;
+        if (temp < 30 || temp > 45) return fail('Please check the temperature you entered.', 'कृपया दर्ज किया गया तापमान जांचें।');
+    }
+    if (hr !== null && (hr < 20 || hr > 250)) return fail('Please check the heart rate you entered.', 'कृपया दर्ज की गई धड़कन जांचें।');
+    if (rr !== null && (rr < 3 || rr > 80)) return fail('Please check the breathing rate you entered.', 'कृपया दर्ज की गई सांस की दर जांचें।');
+
+    // Step 3: symptoms
+    const checked = Array.from(document.querySelectorAll('#symptomChecklist input[type="checkbox"]:checked')).map(el => el.value);
+    const has = v => checked.includes(v);
+    const anyInput = checked.length > 0 || injury !== 'none' || pain !== 'none' || alertness !== 'ok' || temp !== null || hr !== null || rr !== null;
+    if (!anyInput) return fail('Please select at least one symptom or tell us how you feel.', 'कृपया कम से कम एक लक्षण चुनें या अपनी स्थिति बताएँ।');
+
+    const isChild = age < 5, isSenior = age >= 60, isAdult = age >= 18;
+    const genderTxt = { female: L('female', 'महिला'), male: L('male', 'पुरुष'), other: L('other', 'अन्य') }[gender];
+
+    // Collect warning signs: level 3 = emergency, 2 = see a doctor, 1 = home care
+    const reasons = [];
+    const add = (lvl, en, h) => reasons.push({ lvl, text: L(en, h) });
+
+    if (has('breathing')) add(3, 'Difficulty breathing', 'सांस लेने में तकलीफ');
+    if (has('chest')) add(3, 'Chest pain', 'सीने में दर्द');
+    if (has('injury')) add(3, 'Injury or blood loss', 'चोट या खून बहना');
+    if (has('severe') || pain === 'severe') add(3, 'Severe pain', 'तेज़ दर्द');
+    if (injury === 'serious') add(3, 'Serious injury', 'गंभीर चोट');
+    if (alertness === 'drowsy') add(3, 'Drowsy or confused', 'उनींदापन या भ्रम');
+    if (alertness === 'pain' || alertness === 'none') add(3, 'Not responding normally', 'सामान्य रूप से प्रतिक्रिया नहीं');
+
+    if (temp !== null) {
+        const t = temp.toFixed(1) + '°C';
+        if (temp >= 40) add(3, `Very high temperature (${t})`, `बहुत तेज़ बुखार (${t})`);
+        else if (temp < 35) add(3, `Dangerously low temperature (${t})`, `खतरनाक रूप से कम तापमान (${t})`);
+        else if (temp > 37.6) add(2, `High temperature (${t})`, `बढ़ा हुआ तापमान (${t})`);
+        else if (temp < 36.4) add(2, `Low temperature (${t})`, `कम तापमान (${t})`);
+    }
+    if (isAdult && hr !== null) {
+        if (hr > 130 || hr < 40) add(3, `Heart rate far out of range (${hr}/min)`, `दिल की धड़कन सामान्य से बहुत अलग (${hr}/मिनट)`);
+        else if (hr > 100 || hr < 45) add(2, `Heart rate outside the usual range (${hr}/min)`, `दिल की धड़कन सामान्य सीमा से बाहर (${hr}/मिनट)`);
+    }
+    if (isAdult && rr !== null) {
+        if (rr > 30 || rr < 8) add(3, `Breathing rate far out of range (${rr}/min)`, `सांस की दर सामान्य से बहुत अलग (${rr}/मिनट)`);
+        else if (rr > 25 || rr < 12) add(2, `Breathing rate outside the usual range (${rr}/min)`, `सांस की दर सामान्य सीमा से बाहर (${rr}/मिनट)`);
+    }
+    if (injury === 'minor') add(pain !== 'none' ? 2 : 1, 'Minor injury', 'हल्की चोट');
+    if (pain === 'mild') add(isChild || isSenior ? 2 : 1, 'Mild to moderate pain', 'हल्का से मध्यम दर्द');
+    if (has('fever')) add(isChild || isSenior ? 2 : 1, 'Fever or cold', 'बुखार या सर्दी');
+    if (has('headache')) add(1, 'Headache', 'सिरदर्द');
+    if (has('vomiting')) add(isChild || isSenior ? 2 : 1, 'Vomiting or loose motions', 'उल्टी या दस्त');
+    if (pregnant) add(2, 'Pregnancy with symptoms', 'गर्भावस्था में लक्षण');
+
+    let level = reasons.reduce((m, r) => Math.max(m, r.lvl), 1);
+    let doubtNote = '';
+    // Safety first: several milder signs together are treated as "see a doctor"
+    if (level === 1 && reasons.length >= 3) {
+        level = 2;
+        doubtNote = L('Several signs together, so a doctor visit is the safer choice.', 'कई लक्षण एक साथ हैं, इसलिए डॉक्टर को दिखाना ज़्यादा सुरक्षित है।');
+    }
+
+    const style = {
+        3: { c: 'text-red-600 dark:text-red-400', title: L('EMERGENCY: get help now', 'आपातकाल: तुरंत मदद लें'),
+             act: L('Call 112 or 108 now or go to the nearest hospital. Do not delay, and do not travel alone if you feel faint.', 'अभी 112 या 108 पर कॉल करें या नज़दीकी अस्पताल जाएँ। देर न करें और चक्कर आए तो अकेले यात्रा न करें।') },
+        2: { c: 'text-orange-600 dark:text-orange-400', title: L('SEE A DOCTOR', 'डॉक्टर को दिखाएँ'),
+             act: L('Please see a doctor within 24 hours, or sooner if you feel worse.', 'कृपया 24 घंटे के भीतर डॉक्टर को दिखाएँ, या हालत बिगड़े तो और जल्दी।') },
+        1: { c: 'text-green-600 dark:text-green-400', title: L('HOME CARE IS LIKELY FINE', 'घर पर देखभाल काफ़ी हो सकती है'),
+             act: L('Rest, drink fluids and watch how you feel. See a doctor if things get worse.', 'आराम करें, तरल पदार्थ पिएँ और अपनी हालत पर नज़र रखें। हालत बिगड़े तो डॉक्टर को दिखाएँ।') }
+    }[level];
+
+    let text = `<strong>${L('Screener Assessment', 'स्क्रीनर मूल्यांकन परिणाम')}</strong> (${L(age + '-year-old ' + genderTxt, age + ' वर्ष, ' + genderTxt)}${pregnant ? L(', pregnant', ', गर्भवती') : ''}):<br>`;
+    text += `<div class="font-bold text-base my-2 ${style.c}">${style.title}</div>${style.act}<br>`;
+    if (reasons.length) {
+        text += `<br><strong>${L('Why:', 'कारण:')}</strong><br>` + reasons.sort((x, y) => y.lvl - x.lvl).map(r => `- ${r.text}`).join('<br>') + '<br>';
+    } else {
+        text += `<br>- ${L('No warning signs found from what you entered.', 'आपकी दी गई जानकारी में कोई चेतावनी संकेत नहीं मिला।')}<br>`;
+    }
+    if (doubtNote) text += `<em>${doubtNote}</em><br>`;
+
+    // Practical advice for the items selected
+    const tips = [];
+    if (has('fever') || (temp !== null && temp > 37.6)) tips.push(L(
+        '<strong>Fever & Cold:</strong> Drink plenty of fluids, rest, and monitor temperature. Ask a doctor or pharmacist before taking any medicine. See a doctor if fever goes above 102°F.',
+        '<strong>बुखार और सर्दी:</strong> पानी/तरल खूब पिएँ, आराम करें और तापमान देखते रहें। दवा के लिए डॉक्टर या फार्मासिस्ट से पूछें। बुखार 102°F से ऊपर जाए तो डॉक्टर को दिखाएँ।'));
+    if (has('headache')) tips.push(L(
+        '<strong>Headache:</strong> Rest in a quiet, dark room and drink water. Get urgent care for a sudden severe headache, vomiting, stiff neck or weakness.',
+        '<strong>सिरदर्द:</strong> शांत, अंधेरे कमरे में आराम करें और पानी पिएँ। अचानक तेज़ सिरदर्द, उल्टी, गर्दन में अकड़न या कमज़ोरी हो तो तुरंत डॉक्टर के पास जाएँ।'));
+    if (has('vomiting')) tips.push(L(
+        '<strong>Vomiting or loose motions:</strong> Sip ORS (oral rehydration solution) often. See a doctor for extreme weakness, very little urine, or blood in vomit or stool.',
+        '<strong>उल्टी/दस्त:</strong> ओआरएस (ORS) घोल थोड़ा-थोड़ा करके पिएँ। बहुत कमज़ोरी, पेशाब कम आना या खून दिखे तो डॉक्टर को दिखाएँ।'));
+    if (injury === 'minor') tips.push(L(
+        '<strong>Minor injury:</strong> Rinse the wound under clean running water, cover it, and rest the injured part. See a doctor for a deep cut, swelling, or pain that keeps growing.',
+        '<strong>हल्की चोट:</strong> घाव को साफ़ बहते पानी से धोएँ, ढकें और चोटिल हिस्से को आराम दें। गहरा कट, सूजन या बढ़ता दर्द हो तो डॉक्टर को दिखाएँ।'));
+    if (pain === 'mild') tips.push(L(
+        '<strong>Pain:</strong> Rest the area. See a doctor if the pain lasts more than 2 days or keeps getting worse.',
+        '<strong>दर्द:</strong> उस हिस्से को आराम दें। दर्द 2 दिन से ज़्यादा रहे या बढ़ता जाए तो डॉक्टर को दिखाएँ।'));
+    if (pregnant) tips.push(L(
+        '<strong>Pregnancy:</strong> Check with your doctor before taking any medicine, and see them soon about these symptoms.',
+        '<strong>गर्भावस्था:</strong> कोई भी दवा लेने से पहले अपने डॉक्टर से पूछें और जल्द ही उन्हें दिखाएँ।'));
+    if ((isChild || isSenior) && level < 3 && (has('fever') || has('vomiting') || (temp !== null && temp > 37.6))) tips.push(L(
+        `<strong>Age-based advice:</strong> These symptoms can worsen quickly in ${isChild ? 'children under 5' : 'people aged 60 and above'}. Please see a doctor within 24 hours.`,
+        `<strong>उम्र के अनुसार सलाह:</strong> ${isChild ? '5 वर्ष से छोटे बच्चों' : '60 वर्ष से अधिक उम्र के लोगों'} में ये लक्षण जल्दी बिगड़ सकते हैं। 24 घंटे के भीतर डॉक्टर को दिखाएँ।`));
+    if (!isAdult && (hr !== null || rr !== null)) tips.push(L(
+        '<strong>Note:</strong> The heart rate and breathing rate ranges used here are for adults. For children, ask a doctor how to read these numbers.',
+        '<strong>ध्यान दें:</strong> यहाँ धड़कन और सांस की दर की सीमाएँ वयस्कों के लिए हैं। बच्चों के लिए इन संख्याओं का मतलब डॉक्टर से पूछें।'));
+    if (tips.length) text += '<br>' + tips.join('<br>') + '<br>';
+
+    text += L(
+        '<br><em>This is not a diagnosis. See a doctor if symptoms get worse.</em><br><strong>Source:</strong> <em>Clinical First-Aid Screener Matrix</em>.',
+        '<br><em>यह निदान नहीं है। लक्षण बढ़ें तो डॉक्टर से मिलें।</em><br><strong>स्रोत:</strong> <em>Clinical First-Aid Screener Matrix</em>.');
+    res.innerHTML = text;
+}
+
+function switchGame(gameName) {
+    ['memory', 'hydration', 'colour', 'thought'].forEach(g => {
+        const gameSec = document.getElementById(`game-${g}`);
+        const gameBtn = document.getElementById(`gBtn-${g}`);
+        if (gameSec) gameSec.classList.add('hidden');
+        if (gameBtn) gameBtn.className = "py-2 px-3 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+    });
+    const targetGame = document.getElementById(`game-${gameName}`);
+    const targetBtn = document.getElementById(`gBtn-${gameName}`);
+    if (targetGame) targetGame.classList.remove('hidden');
+    if (targetBtn) targetBtn.className = "py-2 px-3 rounded-xl text-xs font-bold bg-primary-500 text-white shadow";
+}
+
+// Start the games. Each one is wrapped separately so one failure cannot stop the others.
+function startGames() {
+    [['memoryGrid', 'initMemoryGame'], ['hydrationGameIcons', 'initHydrationGame'], ['', 'drawGoodThought']].forEach(([gridId, fnName]) => {
+        try {
+            const grid = gridId ? document.getElementById(gridId) : null;
+            if (typeof window[fnName] === 'function' && (!grid || grid.children.length === 0)) window[fnName]();
+        } catch (err) { console.error('Game start failed:', fnName, err); }
+    });
+}
+if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', startGames);
+else startGames();
+
+</script>
+<script>
+// ManoSaathi additions: home mood log, Chat/Journal switch, three-stage symptom screener.
+function switchTab(tabId) {
+    ['home','chat','screener','wellness','firstaid','help'].forEach(id => {
+        const section=document.getElementById('section-'+id), button=document.getElementById('tabBtn-'+id);
+        if(section) section.classList.toggle('hidden', id!==tabId);
+        if(button) button.className = 'w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition ' + (id===tabId ? 'bg-primary-500 text-white shadow-md shadow-primary-500/20' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800');
+    });
+    if(tabId==='wellness' && typeof startGames==='function') startGames();
+}
+
+function readLocal(key, fallback) { try { const v=JSON.parse(localStorage.getItem(key)||'null'); return v===null?fallback:v; } catch { return fallback; } }
+function msLocalDate(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function saveMood(mood, emoji) {
+    const entries=readLocal('manosaathi_moods', []);
+    const now=new Date();
+    entries.unshift({id:now.getTime(),date:msLocalDate(),time:now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),mood,emoji});
+    try{localStorage.setItem('manosaathi_moods',JSON.stringify(entries.slice(0,200)));}catch(e){console.error(e);}
+    const m=document.getElementById('moodSavedMessage');
+    if(m)m.textContent='Your mood check-in has been saved on this device.';
+    renderMoodHistory();
+}
+function renderMoodHistory() {
+    const entries=readLocal('manosaathi_moods',[]), wrap=document.getElementById('moodHistory');
+    if(!wrap) return;
+    const mc=document.getElementById('moodCount');if(mc)mc.textContent=(currentLang==='hi')?entries.length+' चेक-इन':entries.length+' check-in'+(entries.length===1?'':'s');
+    const tl=document.getElementById('moodTodayLabel'),cur=entries.find(x=>x.date===msLocalDate());
+    if(tl)tl.textContent=cur?'Today: '+cur.emoji+' '+cur.mood:'';
+    wrap.innerHTML=entries.length?entries.slice(0,20).map(x=>`<span class="w-11 h-11 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-2xl" role="img" aria-label="${escapeHtml(x.mood)}, ${escapeHtml(x.date)}${x.time?' '+escapeHtml(x.time):''}" title="${escapeHtml(x.mood)} · ${escapeHtml(x.date)}${x.time?' '+escapeHtml(x.time):''}">${escapeHtml(x.emoji)}</span>`).join(''):'<span>No check-ins yet.</span>';
+}
+
+function showChatMode(mode) {
+    const journal=mode==='journal';
+    ['chatMessages','quickPromptsToolbar','chatForm'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('hidden',journal);});
+    const panel=document.getElementById('journalPanel'); if(panel)panel.classList.toggle('hidden',!journal);
+    const chatBtn=document.getElementById('chatModeButton'), journalBtn=document.getElementById('journalModeButton');
+    if(chatBtn)chatBtn.className='px-4 py-2 rounded-xl text-sm font-semibold '+(!journal?'bg-primary-500 text-white':'bg-slate-100 dark:bg-slate-800');
+    if(journalBtn)journalBtn.className='px-4 py-2 rounded-xl text-sm font-semibold '+(journal?'bg-primary-500 text-white':'bg-slate-100 dark:bg-slate-800');
+    if(journal)renderJournalEntries();
+}
+function saveJournalEntry() {
+    const body=document.getElementById('journalText').value.trim();
+    if(!body){document.getElementById('journalStatus').textContent='Please write something before saving.';return;}
+    const entries=readLocal('manosaathi_journal',[]);
+    entries.unshift({id:Date.now(),title:document.getElementById('journalTitle').value.trim(),body,createdAt:new Date().toISOString()});
+    localStorage.setItem('manosaathi_journal',JSON.stringify(entries.slice(0,100)));
+    document.getElementById('journalText').value='';document.getElementById('journalTitle').value='';
+    document.getElementById('journalStatus').textContent='Entry saved on this device.';renderJournalEntries();
+}
+function deleteJournalEntry(id) {
+    const entries=readLocal('manosaathi_journal',[]).filter(x=>x.id!==id);
+    localStorage.setItem('manosaathi_journal',JSON.stringify(entries));renderJournalEntries();
+}
+function renderJournalEntries() {
+    const entries=readLocal('manosaathi_journal',[]), wrap=document.getElementById('journalEntries');if(!wrap)return;
+    wrap.innerHTML=entries.length?entries.map(x=>`<article class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"><div class="flex justify-between gap-3"><div class="font-semibold">${escapeHtml(x.title||'Journal entry')}</div><button onclick="deleteJournalEntry(${Number(x.id)})" class="text-xs text-rose-600">Delete</button></div><p class="text-xs text-slate-500 mt-1">${new Date(x.createdAt).toLocaleString()}</p><p class="text-sm whitespace-pre-wrap mt-3">${escapeHtml(x.body)}</p></article>`).join(''):'<p class="text-sm text-slate-500">No journal entries yet.</p>';
+}
+
+const screenerFollowups={
+ mild_headache:[['duration','How long has the headache been present?',['Less than a day','1–2 days','More than 2 days']],['pattern','Is this headache unusual for you?',['No, familiar','Yes, new or unusual']]],
+ moderate_headache:[['duration','How long has the headache been recurring?',['1–2 days','3–7 days','More than a week']],['impact','Does it affect your daily activities?',['No','A little','A lot']]],
+ mild_cold:[['duration','How long have you had these symptoms?',['Today','2–3 days','More than 3 days']],['fever','Do you also have a measured fever?',['No','Yes','Not sure']]],
+ moderate_fever:[['duration','How long has the fever lasted?',['Less than 24 hours','1–3 days','More than 3 days']],['temp','Have you measured your temperature?',['Below 38°C','38–39.9°C','40°C or higher','Not measured']]],
+ mild_stomach:[['duration','When did the discomfort start?',['Today','1–2 days ago','More than 2 days ago']],['severity','How strong is it?',['Mild','Moderate','Severe']]],
+ moderate_stomach:[['location','Where is the pain mainly located?',['Upper abdomen','Lower abdomen','One side','All over / unsure']],['duration','How long has it lasted?',['A few hours','1–2 days','More than 2 days']]],
+ mild_tired:[['sleep','How has your sleep been recently?',['Usual','Less than usual','Poor / interrupted']],['duration','How long have you felt tired?',['Today','Several days','Weeks']]],
+ mild_sleep:[['duration','How long have you had trouble sleeping?',['1–2 nights','About a week','More than a week']],['impact','Does this affect daytime functioning?',['No','Somewhat','A lot']]],
+ moderate_vomit:[['frequency','How often have you vomited / had loose motions?',['Once','2–3 times','Many times']],['fluids','Can you keep fluids down?',['Yes','Only small sips','No']]],
+ moderate_anxiety:[['duration','How long have you been feeling anxious?',['A few hours','Several days','Weeks or longer']],['impact','Is it affecting daily life?',['Not really','Somewhat','A lot']]],
+ moderate_lowmood:[['duration','How long have you felt low?',['A day or two','About a week','Two weeks or longer']],['safety','Have you had thoughts of hurting yourself?',['No','Yes','Prefer not to answer']]],
+ urgent_breathing:[['onset','Did the breathing difficulty start suddenly?',['Yes','No','Not sure']]], urgent_chest:[['onset','Is the chest pain happening right now?',['Yes','No','Comes and goes']]], urgent_bleeding:[['bleeding','Is the bleeding heavy or difficult to stop?',['Yes','No','Not sure']]], urgent_unconscious:[['status','Is the person fully awake and responding normally now?',['Yes','No','Not sure']]], urgent_suicide:[['safety','Are you in immediate danger of harming yourself right now?',['Yes','No','Not sure']]], urgent_sudden:[['onset','Did the severe pain or weakness begin suddenly?',['Yes','No','Not sure']]]
+};
+function selectedScreenerSymptoms(){return Array.from(document.querySelectorAll('input[name="scrSymptoms"]:checked')).map(x=>x.value);}
+function goScreenerStep(step){
+    if(step===2){const age=Number(document.getElementById('scrAge').value),gender=document.getElementById('scrGender').value;if(!Number.isInteger(age)||age<0||age>120){alert('Please enter a valid age between 0 and 120.');return;}if(!gender){alert('Please select gender or prefer not to say.');return;}const t=document.getElementById('scrTemp').value;if(t!==''&&(!Number.isFinite(Number(t))||Number(t)<(document.getElementById('scrTempUnit').value==='C'?25:77)||Number(t)>(document.getElementById('scrTempUnit').value==='C'?45:113))){alert('Please check the temperature value.');return;}}
+    if(step===3){const selected=selectedScreenerSymptoms();if(!selected.length){alert('Please select at least one symptom.');return;}buildScreenerFollowups();}
+    [1,2,3].forEach(n=>{document.getElementById('scrStep'+n+'Panel').classList.toggle('hidden',n!==step);const b=document.getElementById('scrStepBadge'+n);b.className='px-3 py-2 rounded-full '+(n===step?'bg-primary-500 text-white':'bg-slate-200 dark:bg-slate-800');});
+    document.getElementById('screenerResult').classList.add('hidden');
+}
+function buildScreenerFollowups(){
+    const wrap=document.getElementById('scrFollowups');wrap.innerHTML='';
+    selectedScreenerSymptoms().forEach(key=>{const title=key.replace(/^(mild|moderate|urgent)_/,'').replace(/_/g,' ');const group=document.createElement('div');group.className='p-4 rounded-xl bg-slate-50 dark:bg-slate-800 space-y-3';group.innerHTML=`<h4 class="font-semibold capitalize">${escapeHtml(title)}</h4>`;
+        (screenerFollowups[key]||[['details','Please describe this symptom briefly (optional)',[]]]).forEach(([id,q,opts])=>{const label=document.createElement('label');label.className='block text-sm';label.textContent=q;if(opts.length){const select=document.createElement('select');select.name='follow_'+key+'_'+id;select.className='block mt-2 w-full rounded-xl border bg-white dark:bg-slate-900 dark:border-slate-700 p-3';select.innerHTML='<option value="">Choose an answer (optional)</option>'+opts.map(o=>`<option>${escapeHtml(o)}</option>`).join('');label.appendChild(select);}else{const input=document.createElement('textarea');input.name='follow_'+key+'_'+id;input.rows=2;input.className='block mt-2 w-full rounded-xl border bg-white dark:bg-slate-900 dark:border-slate-700 p-3';input.placeholder='Optional details';label.appendChild(input);}group.appendChild(label);});wrap.appendChild(group);
+    });
+}
+function clearScreener(){document.getElementById('scrAge').value='';document.getElementById('scrGender').value='';document.getElementById('scrTemp').value='';document.querySelectorAll('input[name="scrSymptoms"]').forEach(x=>x.checked=false);document.getElementById('scrFollowups').innerHTML='';document.getElementById('screenerResult').classList.add('hidden');goScreenerStep(1);}
+function evaluateNewScreener(){
+    const selected=selectedScreenerSymptoms(), result=document.getElementById('screenerResult');if(!selected.length){alert('Please go back and select at least one symptom.');return;}
+    const urgent=selected.some(x=>x.startsWith('urgent_'));const moderate=selected.some(x=>x.startsWith('moderate_'));const answers=[];
+    selected.forEach(key=>{const title=key.replace(/^(mild|moderate|urgent)_/,'').replace(/_/g,' ');const fields=Array.from(document.querySelectorAll(`[name^="follow_${key}_"]`)).map(el=>el.value).filter(Boolean);answers.push(`<li><strong>${escapeHtml(title)}:</strong> ${fields.length?fields.map(escapeHtml).join('; '):'No additional details entered'}</li>`);});
+    const temp=document.getElementById('scrTemp').value,unit=document.getElementById('scrTempUnit').value;const tempNum=temp===''?null:Number(temp);
+    let level=urgent?'Level 3 — urgent warning signs':moderate?'Level 2 — arrange medical advice':'Level 1 — mild symptoms';
+    let advice=urgent?'<strong class="text-rose-700">Please seek urgent medical help now.</strong> Call India emergency number 112 or go to the nearest emergency department. Do not wait for this screener.':moderate?'<strong class="text-amber-700">Please contact a qualified healthcare professional.</strong> Arrange medical advice, especially if symptoms are worsening or persistent.':'Rest, drink fluids if appropriate, and monitor how you feel. If symptoms persist, worsen, or concern you, contact a healthcare professional.';
+    if(selected.includes('urgent_suicide'))advice='<strong class="text-rose-700">Please get immediate human support.</strong> If you may act on these thoughts, call 112 or go to an emergency department now. Stay with someone you trust and move away from anything you could use to hurt yourself. In India, Tele-MANAS is 14416.';
+    if(tempNum!==null){const c=unit==='F'?(tempNum-32)*5/9:tempNum;if(c>=40){level='Level 3 — urgent warning signs';advice='<strong class="text-rose-700">A measured temperature of 40°C or higher needs urgent medical assessment.</strong> Please seek urgent medical care now.';}else if(c>=38&&!urgent){level='Level 2 — arrange medical advice';advice='A temperature of 38°C or higher can be a fever. Contact a healthcare professional for advice, particularly if it persists or you feel worse.';}}
+    result.innerHTML=`<h3 class="font-bold text-lg">Your symptom summary</h3><p class="font-bold mt-2">${level}</p><p class="mt-2">${advice}</p><p class="mt-4 font-semibold">Details you selected</p><ul class="list-disc pl-5 mt-1">${answers.join('')}</ul><p class="mt-4 text-xs text-slate-500">Age: ${escapeHtml(document.getElementById('scrAge').value)} · Gender: ${escapeHtml(document.getElementById('scrGender').value)} · Temperature: ${temp===''?'Not provided':escapeHtml(temp+' °'+unit)}.</p><p class="mt-3 text-xs text-slate-500">This is not a diagnosis or a validated clinical risk score. Follow-up answers are for organizing information to discuss with a clinician.</p><div class="flex gap-2 mt-4"><button onclick="goScreenerStep(2)" class="px-4 py-2 border rounded-xl">Edit symptoms</button><button onclick="clearScreener()" class="px-4 py-2 bg-primary-500 text-white rounded-xl">Start again</button></div>`;
+    result.classList.remove('hidden');result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+
+// Render **bold** and line breaks safely
+function msRich(t){return escapeHtml(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
+// After a physical-symptom message, offer a one-tap link to the Symptom Screener
+function msScreenerNudge(message){
+  if(!/fever|bukhar|cough|cold\b|headache|pain|vomit|diarrh|rash|sore throat|stomach|dizz|infection|symptom|nausea|बुखार|खांसी|खाँसी|सर्दी|जुकाम|दर्द|उल्टी|दस्त|चक्कर|गला|पेट|सिरदर्द|बीमार|लक्षण/i.test(message))return;
+  const c=document.getElementById('chatMessages');if(!c)return;
+  const hi=currentLang==='hi';
+  const d=document.createElement('div');d.className='flex justify-start pl-11';
+  d.innerHTML='<button type="button" class="px-4 py-2 rounded-xl bg-primary-500 text-white text-sm font-semibold shadow-sm"><i class="fa-solid fa-stethoscope mr-2"></i>'+(hi?'लक्षण जाँच खोलें':'Open Symptom Screener')+'</button>';
+  d.querySelector('button').onclick=()=>switchTab('screener');
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+
+// Works even if the page is opened via file:// or Live Server (port 5500)
+const MS_API=(location.protocol==='file:'||(location.port&&location.port!=='5000'))?'http://127.0.0.1:5000':'';
+// Chatbot: send the mental-wellbeing message to the local Flask API and use the Kaggle intents file server-side.
+async function handleChatSubmit(e){
+    e.preventDefault();const input=document.getElementById('chatInput'),message=input.value.trim();if(!message)return;appendMessage('user',message);input.value='';const typing=appendTypingIndicator();
+    try{const response=await fetch(MS_API+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,language:currentLang||'en'})});const data=await response.json();removeTypingIndicator(typing);const reply=data.reply||'I could not prepare a response. Please try again.';appendMessage('ai',msRich(reply));msScreenerNudge(message);persistCurrentSession(message,reply);}
+    catch(err){removeTypingIndicator(typing);const msg='I cannot reach the ManoSaathi backend right now. Please start the Flask server and open the website at http://127.0.0.1:5000.';appendMessage('ai',msg);console.error(err);}
+}
+document.addEventListener('DOMContentLoaded',()=>{renderMoodHistory();renderJournalEntries();showChatMode('chat');switchTab('home');});
+</script>
+
+
+<script id="manosaathi-final-overrides">
+const msEnglishToHindi = {
+"Home":"होम","AI Health Partner":"एआई स्वास्थ्य साथी","Symptom Screener":"लक्षण जाँच","Games & Wellness Tools":"खेल और वेलनेस टूल्स","First-Aid Guides":"प्राथमिक चिकित्सा गाइड",
+"Emergency Helplines":"आपातकालीन हेल्पलाइन","Instant help in India":"भारत में तुरंत सहायता","National Emergency":"राष्ट्रीय आपातकाल","Tele-MANAS":"टेली-मानस","History":"इतिहास",
+"A little space for you 🌿":"आपके लिए एक सुकून भरी जगह 🌿","Welcome to ManoSaathi":"मनोसाथी में आपका स्वागत है","Pause, reflect and take one small step towards your wellbeing.":"रुकें, अपने मन को समझें और अपनी भलाई की ओर एक छोटा कदम बढ़ाएँ।",
+"Good morning":"सुप्रभात","Good afternoon":"नमस्कार","Good evening":"शुभ संध्या","Good night":"शुभ रात्रि","How are you feeling today?":"आज आप कैसा महसूस कर रहे हैं?","Choose the mood that feels closest. You can change it later.":"जो मनोदशा आपके सबसे करीब लगे, उसे चुनें। आप इसे बाद में बदल सकते हैं।",
+"Happy":"खुश","Calm":"शांत","Okay":"ठीक","Anxious":"चिंतित","Low":"उदास","Stressed":"तनावग्रस्त","Can't sleep":"नींद नहीं आ रही","Your recent mood check-ins":"आपके हाल के मूड चेक-इन","No check-ins yet.":"अभी तक कोई चेक-इन नहीं।","entries":"प्रविष्टियाँ","Talk it out":"मन की बात कहें","A private, kind space to share what's on your mind.":"अपने मन की बात साझा करने के लिए एक सुरक्षित और सहज जगह।",
+"Chat with the ManoSaathi wellbeing assistant.":"मनोसाथी वेलनेस सहायक से बात करें।","Journal":"डायरी","Write privately about your thoughts and feelings.":"अपने विचार और भावनाएँ निजी रूप से लिखें।",
+"Symptom Screener":"लक्षण जाँच","Review symptoms in three simple steps.":"तीन आसान चरणों में लक्षणों को समझें।","Calm & Play":"सुकून और खेल","Explore your existing games and wellness tools.":"खेलों और वेलनेस टूल्स का आनंद लें।",
+"Daily check-in":"दैनिक चेक-इन","Your check-in":"आपका चेक-इन","Thought of the day":"आज का विचार","A fresh start is waiting.":"एक नई शुरुआत आपका इंतज़ार कर रही है।","First Aid":"प्राथमिक चिकित्सा","Quick steps":"ज़रूरी कदम","Find support":"सहायता पाएँ","Emergency & mental-health helplines":"आपातकालीन और मानसिक स्वास्थ्य हेल्पलाइन",
+"Need urgent help?":"तुरंत सहायता चाहिए?","India emergency services:":"भारत की आपातकालीन सेवा:","Tele-MANAS mental health support:":"टेली-मानस मानसिक स्वास्थ्य सहायता:",
+"Need help?":"मदद चाहिए?","Talk":"बात करें","Check":"जाँच","Calm":"सुकून","First aid":"प्राथमिक उपचार",
+"Ask health queries in English or Hindi":"हिंदी में अपनी बात साझा करें","New Chat":"नई बातचीत","My Journal":"मेरी डायरी","A private space to write. Entries are saved in this browser on this device.":"लिखने के लिए एक निजी जगह। प्रविष्टियाँ इसी डिवाइस के ब्राउज़र में सेव होती हैं।",
+"Give this entry a title (optional)":"इस प्रविष्टि को शीर्षक दें (वैकल्पिक)","Write whatever is on your mind...":"आपके मन में जो भी है, लिखें...","Save entry":"सेव करें","Previous entries":"पिछली प्रविष्टियाँ",
+"Privacy note: these entries stay in your browser's local storage. They are not sent to the Flask chatbot backend. Do not use a shared/public device for sensitive writing.":"गोपनीयता: ये प्रविष्टियाँ इसी ब्राउज़र में रहती हैं और चैटबॉट सर्वर पर नहीं भेजी जातीं। निजी बातें साझा डिवाइस पर न लिखें।",
+"Quick Symptom Screener":"त्वरित लक्षण जाँच","A guided symptom check. It does not diagnose a disease.":"लक्षणों को समझने के लिए निर्देशित जाँच। यह किसी बीमारी का निदान नहीं करती।",
+"Step 1 — About you":"चरण 1 — आपके बारे में","Step 2 — Select your symptoms":"चरण 2 — अपने लक्षण चुनें","Step 3 — A few follow-up questions":"चरण 3 — कुछ अतिरिक्त प्रश्न",
+"Age (required)":"उम्र (ज़रूरी)","Gender (required)":"लिंग (ज़रूरी)","Temperature (optional)":"तापमान (वैकल्पिक)","Select":"चुनें","Female":"महिला","Male":"पुरुष","Other / prefer not to say":"अन्य / बताना नहीं चाहते",
+"Only enter a temperature if you have measured it. You can leave it blank.":"तापमान तभी भरें जब आपने मापा हो। इसे खाली छोड़ सकते हैं।",
+"Choose all that apply. The levels describe how urgent the symptom feels, not a disease severity score.":"लागू होने वाले सभी लक्षण चुनें। स्तर लक्षण की तात्कालिकता बताते हैं, बीमारी की गंभीरता नहीं।",
+"Level 1 — Mild / manageable":"स्तर 1 — हल्के / संभालने योग्य","Level 2 — Moderate / needs attention":"स्तर 2 — मध्यम / ध्यान देने योग्य","Level 3 — Severe / urgent warning signs":"स्तर 3 — गंभीर / तुरंत ध्यान देने योग्य संकेत",
+"Mild headache":"हल्का सिरदर्द","Mild cold / sore throat":"हल्की सर्दी / गले में खराश","Mild stomach discomfort":"पेट में हल्की परेशानी","Tiredness / low energy":"थकान / कम ऊर्जा","Sleep difficulty":"नींद में परेशानी",
+"Persistent / recurring headache":"लगातार / बार-बार सिरदर्द","Fever / chills":"बुखार / ठंड लगना","Repeated stomach pain":"बार-बार पेट दर्द","Vomiting / loose motions":"उल्टी / दस्त","Anxiety / panic feelings":"घबराहट / बेचैनी","Low mood / loss of interest":"उदास मन / रुचि कम होना",
+"Severe difficulty breathing":"साँस लेने में गंभीर कठिनाई","Chest pain / pressure":"सीने में दर्द / दबाव","Heavy bleeding / serious injury":"अधिक रक्तस्राव / गंभीर चोट","Fainting, confusion or not responding":"बेहोशी, भ्रम या प्रतिक्रिया न देना","Thoughts of suicide / immediate self-harm risk":"आत्महत्या या खुद को नुकसान पहुँचाने के विचार","Sudden severe pain or sudden weakness":"अचानक तेज़ दर्द या कमजोरी",
+"Questions appear based on the symptoms you selected. You can go back and edit your choices.":"आपके चुने लक्षणों के आधार पर प्रश्न दिखेंगे। आप पीछे जाकर विकल्प बदल सकते हैं।",
+"Clear all choices":"सभी विकल्प हटाएँ","Back":"वापस","Continue":"आगे बढ़ें","Back / edit symptoms":"वापस / लक्षण बदलें","View guidance":"मार्गदर्शन देखें",
+"This educational screener cannot diagnose conditions or replace a clinician. For an emergency in India, call 112. For mental health support, Tele-MANAS is 14416.":"यह जानकारी देने वाला टूल बीमारी का निदान नहीं कर सकता और डॉक्टर का विकल्प नहीं है। भारत में आपातकाल के लिए 112 और मानसिक स्वास्थ्य सहायता के लिए टेली-मानस 14416 पर कॉल करें।",
+"Interactive Games & Wellness Hub":"इंटरैक्टिव गेम्स और वेलनेस","Engaging games and mindful tools for relaxation and brain health.":"मन को शांत रखने और एकाग्रता के लिए खेल और उपयोगी टूल।",
+"1. Memory Game":"1. याददाश्त का खेल","2. Hydration Game":"2. पानी पीने का खेल","3. Colour Game":"3. रंगों का खेल","4. Good Thought":"4. अच्छा विचार",
+"Restart Game":"खेल फिर शुरू करें","Find all matching pairs!":"सभी मिलते-जुलते जोड़े खोजें!","Progress: 0 / 8 Glasses":"प्रगति: 0 / 8 गिलास","Drink a Glass 💧":"एक गिलास पानी पिएँ 💧","Red":"लाल","Blue":"नीला","Green":"हरा","Score: 0":"स्कोर: 0",
+"Emergency First-Aid Protocols":"आपातकालीन प्राथमिक चिकित्सा","Standard medical guidelines with verified sources.":"विश्वसनीय स्रोतों पर आधारित सामान्य चिकित्सा मार्गदर्शन।",
+"Wound Bleeding / रक्तस्राव":"घाव से रक्तस्राव","Breathing Difficulty / सांस की तकलीफ":"साँस लेने में कठिनाई","Chat History Manager":"चैट इतिहास","No past chat history.":"कोई पुरानी चैट नहीं है।","Delete All History":"सारा इतिहास हटाएँ","Close":"बंद करें",
+"Talk it out":"मन की बात कहें","Journal":"डायरी","Hi, I’m ManoSaathi. This is a kind, private space to share what’s on your mind. What would you like to talk about today?":"नमस्ते, मैं मनोसाथी हूँ। यह आपके मन की बात साझा करने के लिए एक सुरक्षित और सहज जगह है। आप किस बारे में बात करना चाहेंगे?",
+"🌿 Feeling stressed":"🌿 तनाव महसूस हो रहा है","🌙 Trouble sleeping":"🌙 नींद नहीं आ रही","💬 Just listen":"💬 बस मेरी बात सुनें","💗 Talk about feelings":"💗 अपनी भावनाओं पर बात करें"
+};
+const msOriginalText = new WeakMap();
+function msTranslateNode(node, toHindi){
+  if(!node || node.nodeType!==Node.TEXT_NODE) return;
+  const raw=node.nodeValue, trimmed=raw.trim();
+  if(!trimmed) return;
+  if(!msOriginalText.has(node)) msOriginalText.set(node,raw);
+  const original=msOriginalText.get(node), key=original.trim();
+  if(toHindi && msEnglishToHindi[key]){
+    const leading=original.match(/^\s*/)[0], trailing=original.match(/\s*$/)[0];
+    node.nodeValue=leading+msEnglishToHindi[key]+trailing;
+  } else if(!toHindi) node.nodeValue=original;
+}
+function msApplyFullLanguage(){
+  const toHindi=currentLang==='hi';
+  document.documentElement.lang=toHindi?'hi':'en';
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  let node; while(node=walker.nextNode()) msTranslateNode(node,toHindi);
+  document.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(el=>{
+    if(!el.dataset.msPlaceholder) el.dataset.msPlaceholder=el.placeholder;
+    const p=el.dataset.msPlaceholder;
+    el.placeholder=toHindi?(msEnglishToHindi[p]||p):p;
+  });
+  document.querySelectorAll('#ms-bottom-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===window.msActiveTab));
+  const greeting=document.getElementById('ms-greeting');
+  if(greeting){const h=new Date().getHours();greeting.textContent=toHindi?(h<12?'सुप्रभात':h<17?'नमस्कार':h<21?'शुभ संध्या':'शुभ रात्रि'):(h<12?'Good morning':h<17?'Good afternoon':h<21?'Good evening':'Good night');}
+  const thought=document.getElementById('ms-thought');
+  if(thought) thought.textContent=toHindi?'आज का दिन एक नई शुरुआत हो सकता है।':'A fresh start is waiting.';
+  const toolbar=document.getElementById('quickPromptsToolbar');
+  if(toolbar){const labels=toHindi?['🌿 तनाव महसूस हो रहा है','🌙 नींद नहीं आ रही','💬 बस मेरी बात सुनें','💗 अपनी भावनाओं पर बात करें']:['🌿 Feeling stressed','🌙 Trouble sleeping','💬 Just listen','💗 Talk about feelings'];toolbar.querySelectorAll('button').forEach((b,i)=>b.textContent=labels[i]||b.textContent);}
+}
+const msOldToggleLanguage=toggleLanguage;
+toggleLanguage=function(){msOldToggleLanguage();msApplyFullLanguage();};
+const msOldSwitchTab=switchTab;
+switchTab=function(tab){window.msActiveTab=tab;msOldSwitchTab(tab);document.querySelectorAll('#ms-bottom-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));};
+function msInitBottomNav(){window.msActiveTab='home';document.querySelectorAll('#ms-bottom-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab==='home'));msApplyFullLanguage();}
+document.addEventListener('DOMContentLoaded',msInitBottomNav);
+// Browser/phone Back button moves between sections instead of leaving the site
+history.replaceState({tab:'home'},'',location.pathname+location.search);
+const msTabBase=switchTab;
+switchTab=function(tab){msTabBase(tab);if(!window.msPopping&&!(history.state&&history.state.tab===tab))history.pushState({tab:tab},'','#'+tab);};
+window.addEventListener('popstate',e=>{const t=(e.state&&e.state.tab)||'home';window.msPopping=true;switchTab(t);if(t==='chat'&&typeof showChatMode==='function')showChatMode('chat');window.msPopping=false;});
+
+
+// Chat history is sent with each turn so the API can respond to follow-up messages.
+let msConversation = [];
+const msOriginalHandleChatSubmit = handleChatSubmit;
+handleChatSubmit = async function(e){
+  e.preventDefault();
+  const input=document.getElementById('chatInput');
+  const message=(input?.value||'').trim();
+  if(!message) return;
+  appendMessage('user',escapeHtml(message));
+  input.value='';
+  const typing=appendTypingIndicator();
+  try{
+    const response=await fetch(MS_API+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,language:currentLang||'en',history:msConversation.slice(-10)})});
+    let data;try{data=await response.json();}catch(_){throw new Error('Server answered with HTTP '+response.status+' but not JSON. Open the site from http://127.0.0.1:5000 (not Live Server/file).');}
+    removeTypingIndicator(typing);
+    if(!response.ok) throw new Error(data.error||data.reply||'Chat service error');
+    const reply=data.reply||'I could not prepare a response. Please try again.';
+    appendMessage('ai',msRich(reply));msScreenerNudge(message);
+    msConversation.push({role:'user',content:message},{role:'assistant',content:reply});
+    msConversation=msConversation.slice(-12);
+    persistCurrentSession(message,reply);
+  }catch(err){
+    removeTypingIndicator(typing);
+    const why=escapeHtml(String(err&&err.message||err));const base=MS_API||location.origin;const fallback=(currentLang==='hi'?'मनोसाथी सर्वर से जुड़ नहीं पा रहा है।':'I cannot reach the ManoSaathi backend.')+' ['+why+' — '+base+'/api/chat]';
+    appendMessage('ai',fallback);console.error(err);
+  }
+};
+// Streaming chat: the reply appears word by word as the AI writes it.
+handleChatSubmit = async function(e){
+  e.preventDefault();
+  const input=document.getElementById('chatInput');
+  const message=(input?.value||'').trim();
+  if(!message) return;
+  appendMessage('user',escapeHtml(message));
+  input.value='';
+  const typing=appendTypingIndicator();
+  const container=document.getElementById('chatMessages');
+  let bubble=null, full='';
+  try{
+    const response=await fetch(MS_API+'/api/chat_stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,language:currentLang||'en',history:msConversation.slice(-10)})});
+    if(!response.ok||!response.body) throw new Error('Chat service error (HTTP '+response.status+')');
+    const crisisKind=response.headers.get('X-MS-Crisis');
+    const reader=response.body.getReader(), decoder=new TextDecoder('utf-8');
+    while(true){
+      const {done,value}=await reader.read();
+      if(done) break;
+      full+=decoder.decode(value,{stream:true});
+      if(!bubble){
+        removeTypingIndicator(typing);
+        appendMessage('ai','');
+        bubble=container.lastElementChild.querySelector('.bg-slate-100');
+      }
+      bubble.innerHTML=msRich(full);
+      container.scrollTop=container.scrollHeight;
+    }
+    full+=decoder.decode();
+    if(!bubble||!full.trim()) throw new Error('Empty response');
+    bubble.innerHTML=msRich(full)+(crisisKind?msCrisisBoxHtml():'');
+    msConversation.push({role:'user',content:message},{role:'assistant',content:full});
+    msConversation=msConversation.slice(-12);
+    persistCurrentSession(message,full);
+    if(!crisisKind)msScreenerNudge(message);
+  }catch(err){
+    removeTypingIndicator(typing);
+    console.error(err);
+    if(bubble&&full.trim()){ msConversation.push({role:'user',content:message},{role:'assistant',content:full}); persistCurrentSession(message,full); return; }
+    const why=escapeHtml(String(err&&err.message||err));
+    appendMessage('ai',(currentLang==='hi'?'अभी जवाब नहीं मिल पाया। कृपया थोड़ी देर बाद दोबारा कोशिश करें।':'I could not get a reply just now. Please try again in a moment.')+' ['+why+']');
+  }
+};
+// Theme: remembers your choice; first visit follows the phone's light/dark setting.
+function msApplyTheme(dark){
+  isDarkMode=!!dark;
+  document.documentElement.classList.toggle('dark',isDarkMode);
+  const ic=document.getElementById('themeIcon');
+  if(ic) ic.className=isDarkMode?'fa-solid fa-sun text-amber-400 text-sm':'fa-solid fa-moon text-slate-600 text-sm';
+}
+toggleDarkMode=function(){
+  msApplyTheme(!document.documentElement.classList.contains('dark'));
+  try{localStorage.setItem('manosaathi_theme',isDarkMode?'dark':'light');}catch(e){}
+};
+(function(){
+  let saved=null;try{saved=localStorage.getItem('manosaathi_theme');}catch(e){}
+  const dark=saved?saved==='dark':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+  msApplyTheme(dark);
+})();
+// ---- Emergency contact ----
+Object.assign(msEnglishToHindi,{
+"Find help":"मदद पाएँ",
+"In an emergency, call first. Don't wait for the chatbot.":"आपातकाल में पहले कॉल करें। चैटबॉट के जवाब का इंतज़ार न करें।",
+"Call 112":"112 पर कॉल करें","All emergencies":"सभी आपात स्थितियाँ","Ambulance":"एम्बुलेंस","Call 108":"108 पर कॉल करें",
+"Hospitals near me":"मेरे पास के अस्पताल","Opens maps with your location":"आपकी लोकेशन के साथ मैप खुलता है",
+"Mental health help nearby":"पास में मानसिक स्वास्थ्य सहायता","Clinics and psychiatrists":"क्लिनिक और मनोचिकित्सक",
+"Emergency contact":"आपातकालीन संपर्क",
+"Someone you trust, who can help you in an emergency.":"कोई भरोसेमंद व्यक्ति, जो आपातकाल में आपकी मदद कर सके।",
+"Tap the red button and your phone opens a message to them with your location. Nothing is sent until you press Send.":"लाल बटन दबाने पर आपका फ़ोन उन्हें आपकी लोकेशन वाला संदेश खोल देता है। भेजें दबाने तक कुछ भी नहीं भेजा जाता।",
+"Saved only on this device.":"केवल इसी डिवाइस पर सेव होता है।",
+"Add emergency contact":"आपातकालीन संपर्क जोड़ें","I need help, send my location":"मुझे मदद चाहिए, मेरी लोकेशन भेजें",
+"Call contact":"संपर्क को कॉल करें","Change":"बदलें","Name":"नाम","Phone number":"फ़ोन नंबर",
+"Relationship (optional)":"रिश्ता (वैकल्पिक)","Save contact":"संपर्क सेव करें","Remove":"हटाएँ",
+"Mental health support: Tele-MANAS 14416":"मानसिक स्वास्थ्य सहायता: टेली-मानस 14416"
+});
+function msGetContact(){try{const c=JSON.parse(localStorage.getItem('manosaathi_contact')||'null');return c&&c.phone?c:null;}catch(e){return null;}}
+function msRenderContact(){
+  const c=msGetContact();
+  const e=document.getElementById('contactCardEmpty'),f=document.getElementById('contactCardFilled');
+  if(!e||!f)return;
+  e.classList.toggle('hidden',!!c);f.classList.toggle('hidden',!c);
+  if(c){
+    document.getElementById('contactNameShow').textContent=c.name+(c.rel?' ('+c.rel+')':'');
+    document.getElementById('contactPhoneShow').textContent=c.phone;
+    document.getElementById('contactInitial').textContent=(c.name||'?').trim().charAt(0).toUpperCase();
+    document.getElementById('contactCallLink').setAttribute('href','tel:'+c.phone);
+  }
+}
+function msContactError(msg){const p=document.getElementById('contactError');if(!p)return;p.textContent=msg||'';p.classList.toggle('hidden',!msg);}
+function openContactModal(){
+  const c=msGetContact();
+  document.getElementById('contactName').value=c?c.name:'';
+  document.getElementById('contactPhone').value=c?c.phone:'';
+  document.getElementById('contactRel').value=c&&c.rel?c.rel:'';
+  document.getElementById('contactRemoveBtn').classList.toggle('hidden',!c);
+  msContactError('');
+  document.getElementById('contactModal').classList.remove('hidden');
+  setTimeout(()=>document.getElementById('contactName').focus(),50);
+}
+function closeContactModal(){document.getElementById('contactModal').classList.add('hidden');}
+function msSaveContact(){
+  const hi=currentLang==='hi';
+  const name=document.getElementById('contactName').value.trim();
+  const phone=document.getElementById('contactPhone').value.replace(/[\s\-().]/g,'');
+  const rel=document.getElementById('contactRel').value.trim();
+  if(!name){msContactError(hi?'नाम लिखें।':'Enter a name.');return;}
+  if(!/^\+?\d{7,15}$/.test(phone)){msContactError(hi?'सही फ़ोन नंबर लिखें, जैसे +91 98765 43210।':'Enter a valid phone number, like +91 98765 43210.');return;}
+  try{localStorage.setItem('manosaathi_contact',JSON.stringify({name,phone,rel}));}catch(e){msContactError(hi?'सेव नहीं हो सका। ब्राउज़र की स्टोरेज जाँचें।':'Could not save. Check your browser storage.');return;}
+  closeContactModal();msRenderContact();
+}
+function msRemoveContact(){try{localStorage.removeItem('manosaathi_contact');}catch(e){}closeContactModal();msRenderContact();}
+function msSendLocation(){
+  const c=msGetContact();if(!c){openContactModal();return;}
+  const hi=currentLang==='hi';
+  const st=document.getElementById('contactStatus');
+  const say=t=>{if(!st)return;st.textContent=t;st.classList.toggle('hidden',!t);};
+  const openSms=link=>{
+    const body=(hi?'मुझे मदद चाहिए। कृपया मुझे कॉल करें या मेरे पास आएँ।':'I need help. Please call me or come to me.')+(link?(hi?' मेरी लोकेशन: ':' My location: ')+link:'');
+    const sep=/iPhone|iPad|iPod/i.test(navigator.userAgent)?'&':'?';
+    location.href='sms:'+c.phone+sep+'body='+encodeURIComponent(body);
+  };
+  if(!navigator.geolocation){say(hi?'यह ब्राउज़र लोकेशन नहीं दे सकता। संदेश बिना लोकेशन के खुलेगा।':'This browser can’t share location. Your message will open without it.');openSms('');return;}
+  say(hi?'आपकी लोकेशन ढूँढ रहे हैं…':'Finding your location…');
+  navigator.geolocation.getCurrentPosition(
+    p=>{say('');openSms('https://maps.google.com/?q='+p.coords.latitude.toFixed(6)+','+p.coords.longitude.toFixed(6));},
+    ()=>{say(hi?'लोकेशन नहीं मिली। संदेश बिना लोकेशन के खुलेगा।':'Couldn’t get your location. Your message will open without it.');openSms('');},
+    {enableHighAccuracy:true,timeout:8000,maximumAge:60000});
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeContactModal();});
+document.addEventListener('DOMContentLoaded',msRenderContact);
+msRenderContact();
+// ---- Location button + extra Hindi ----
+Object.assign(msEnglishToHindi,{
+"Help":"मदद","Location":"लोकेशन","Location is off":"लोकेशन बंद है","Turn on location":"लोकेशन चालू करें",
+"Turn it on so maps can show hospitals near you and your emergency message can include where you are.":"इसे चालू करें ताकि मैप आपके पास के अस्पताल दिखा सके और आपके आपातकालीन संदेश में आपकी जगह शामिल हो सके।",
+"Read the guideline: British Red Cross":"दिशानिर्देश पढ़ें: British Red Cross",
+"Read the guideline: Mayo Clinic":"दिशानिर्देश पढ़ें: Mayo Clinic",
+"Read the guideline: MedlinePlus":"दिशानिर्देश पढ़ें: MedlinePlus"
+});
+function msSetLoc(state){
+  const hi=currentLang==='hi';
+  const dot=document.getElementById('locDot'),st=document.getElementById('locStatus'),btn=document.getElementById('locBtn'),help=document.getElementById('locHelp');
+  if(!dot||!st||!btn||!help)return;
+  const T={
+    on:[hi?'लोकेशन चालू है':'Location is on',hi?'ठीक है':'Active','bg-emerald-500',hi?'आपके पास के अस्पताल और आपके संदेश में आपकी जगह अब उपलब्ध है।':'Maps and your emergency message can now use where you are.'],
+    off:[hi?'लोकेशन बंद है':'Location is off',hi?'लोकेशन चालू करें':'Turn on location','bg-slate-400',hi?'इसे चालू करें ताकि मैप आपके पास के अस्पताल दिखा सके और आपके आपातकालीन संदेश में आपकी जगह शामिल हो सके।':'Turn it on so maps can show hospitals near you and your emergency message can include where you are.'],
+    wait:[hi?'लोकेशन ढूँढ रहे हैं…':'Finding your location…',hi?'रुकिए…':'Please wait','bg-amber-500',hi?'फ़ोन अनुमति माँगे तो अनुमति दें चुनें।':'If your phone asks, choose Allow.'],
+    blocked:[hi?'लोकेशन ब्लॉक है':'Location is blocked',hi?'फिर कोशिश करें':'Try again','bg-rose-500',hi?'ब्राउज़र की साइट सेटिंग में इस साइट के लिए लोकेशन की अनुमति दें, फिर पेज रीलोड करें।':'Allow location for this site in your browser settings, then reload the page.'],
+    unsupported:[hi?'यह ब्राउज़र लोकेशन नहीं दे सकता':'This browser can’t share location',hi?'उपलब्ध नहीं':'Unavailable','bg-slate-400',hi?'फिर भी आप अस्पताल खोज सकते हैं और संपर्क को संदेश भेज सकते हैं।':'You can still search for hospitals and message your contact.']
+  }[state];
+  st.textContent=T[0];btn.firstElementChild.textContent=T[1];help.textContent=T[3];
+  dot.className='w-3 h-3 rounded-full flex-shrink-0 '+T[2];
+  btn.disabled=(state==='on'||state==='wait'||state==='unsupported');
+  btn.classList.toggle('opacity-60',btn.disabled);
+  window.msLocState=state;
+}
+function msEnableLocation(){
+  if(!navigator.geolocation){msSetLoc('unsupported');return;}
+  msSetLoc('wait');
+  navigator.geolocation.getCurrentPosition(()=>msSetLoc('on'),err=>msSetLoc(err&&err.code===1?'blocked':'off'),{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
+}
+function msCheckLocation(){
+  if(!navigator.geolocation){msSetLoc('unsupported');return;}
+  if(navigator.permissions&&navigator.permissions.query){
+    navigator.permissions.query({name:'geolocation'}).then(p=>{
+      const apply=()=>msSetLoc(p.state==='granted'?'on':p.state==='denied'?'blocked':'off');
+      apply();p.onchange=apply;
+    }).catch(()=>msSetLoc('off'));
+  }else msSetLoc('off');
+}
+document.addEventListener('DOMContentLoaded',msCheckLocation);
+const msOldApplyLang=msApplyFullLanguage;
+msApplyFullLanguage=function(){msOldApplyLang();if(window.msLocState)msSetLoc(window.msLocState);};
+// ---- Voice input (speech to text). The person reviews the text and taps Send. ----
+(function(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  const btn=document.getElementById('micBtn');
+  if(!SR||!btn)return;
+  btn.style.display='flex';
+  let rec=null,listening=false,base='';
+  const say=t=>{const s=document.getElementById('micStatus');if(!s)return;s.textContent=t||'';s.classList.toggle('hidden',!t);};
+  const paint=on=>{
+    listening=on;
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    btn.className='w-11 h-11 border rounded-xl flex items-center justify-center transition flex-shrink-0 '+(on?'bg-rose-600 border-rose-600 text-white':'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200');
+    document.getElementById('micIcon').className='fa-solid text-sm '+(on?'fa-stop':'fa-microphone');
+    btn.setAttribute('aria-label',currentLang==='hi'?(on?'सुनना बंद करें':'बोलकर लिखें'):(on?'Stop listening':'Speak your message'));
+  };
+  window.msStopMic=function(){if(rec&&listening){try{rec.stop();}catch(e){}}};
+  window.msToggleMic=function(){
+    const hi=currentLang==='hi',input=document.getElementById('chatInput');
+    if(listening){window.msStopMic();return;}
+    rec=new SR();
+    rec.lang=hi?'hi-IN':'en-IN';
+    rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+    base=input.value?input.value.trim()+' ':'';
+    let heard=false;
+    rec.onstart=()=>{paint(true);say(hi?'सुन रहे हैं… रोकने के लिए माइक दबाएँ। आपका ब्राउज़र आवाज़ को अपनी स्पीच सेवा से प्रोसेस कर सकता है।':'Listening… tap the mic to stop. Your browser may process your voice with its speech service.');};
+    rec.onresult=e=>{
+      let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript;
+      if(t.trim())heard=true;
+      input.value=base+t;
+    };
+    rec.onerror=e=>{
+      const m={'not-allowed':hi?'माइक की अनुमति नहीं मिली। ब्राउज़र की साइट सेटिंग में माइक की अनुमति दें।':'Microphone is blocked. Allow it in your browser’s site settings.',
+               'service-not-allowed':hi?'इस ब्राउज़र में आवाज़ से लिखना उपलब्ध नहीं है।':'Voice typing isn’t available in this browser.',
+               'no-speech':hi?'कुछ सुनाई नहीं दिया। फिर कोशिश करें।':'I didn’t hear anything. Try again.',
+               'audio-capture':hi?'माइक नहीं मिला।':'No microphone found.',
+               'network':hi?'आवाज़ पहचानने के लिए इंटरनेट चाहिए।':'Voice typing needs an internet connection.'}[e.error];
+      say(m||(hi?'आवाज़ से लिखना नहीं हो सका। टाइप करके भेजें।':'Voice typing didn’t work. You can type instead.'));
+      heard=true;
+    };
+    rec.onend=()=>{paint(false);if(heard){const s=document.getElementById('micStatus');if(s&&/Listening|सुन रहे/.test(s.textContent))say(hi?'जाँच लें और भेजें दबाएँ।':'Check the text, then tap Send.');}else say(hi?'कुछ सुनाई नहीं दिया। फिर कोशिश करें।':'I didn’t hear anything. Try again.');input.focus();};
+    try{rec.start();}catch(e){paint(false);}
+  };
+  const form=document.getElementById('chatForm');
+  if(form)form.addEventListener('submit',()=>{window.msStopMic();say('');});
+})();
+// ---- Symptom screener result: new design (light/dark, English/Hindi) ----
+const MS_SYM={
+ mild_headache:['Mild headache','हल्का सिरदर्द',['Stress','Tiredness','Not enough water'],['तनाव','थकान','पानी की कमी']],
+ mild_cold:['Mild cold / sore throat','हल्का जुकाम / गले में खराश',['Common cold','Throat irritation'],['सामान्य सर्दी-जुकाम','गले में जलन']],
+ mild_stomach:['Mild stomach discomfort','पेट में हल्की परेशानी',['Indigestion','Something you ate'],['अपच','खाने से परेशानी']],
+ mild_tired:['Tiredness / low energy','थकान / कम ऊर्जा',['Poor sleep','Stress'],['कम नींद','तनाव']],
+ mild_sleep:['Sleep difficulty','नींद में परेशानी',['Stress','Irregular routine'],['तनाव','अनियमित दिनचर्या']],
+ moderate_headache:['Persistent / recurring headache','लगातार / बार-बार सिरदर्द',['Tension headache','Migraine','Poor sleep'],['तनाव वाला सिरदर्द','माइग्रेन','कम नींद']],
+ moderate_fever:['Fever / chills','बुखार / ठंड लगना',['Viral infection','Other infections'],['वायरल संक्रमण','अन्य संक्रमण']],
+ moderate_stomach:['Repeated stomach pain','बार-बार पेट दर्द',['Stomach infection','Acidity'],['पेट का संक्रमण','एसिडिटी']],
+ moderate_vomit:['Vomiting / loose motions','उल्टी / दस्त',['Stomach infection','Food-related illness'],['पेट का संक्रमण','खाने से हुई बीमारी']],
+ moderate_anxiety:['Anxiety / panic feelings','घबराहट / पैनिक महसूस होना',['Stress','Anxiety'],['तनाव','चिंता']],
+ moderate_lowmood:['Low mood / loss of interest','उदास मन / रुचि खत्म होना',['Stress','Low mood'],['तनाव','उदासी']],
+ urgent_breathing:['Severe difficulty breathing','साँस लेने में गंभीर कठिनाई',[],[]],
+ urgent_chest:['Chest pain / pressure','सीने में दर्द / दबाव',[],[]],
+ urgent_bleeding:['Heavy bleeding / serious injury','बहुत खून बहना / गंभीर चोट',[],[]],
+ urgent_unconscious:['Fainting, confusion or not responding','बेहोशी, भ्रम या जवाब न देना',[],[]],
+ urgent_suicide:['Thoughts of suicide / immediate self-harm risk','आत्महत्या के विचार / खुद को तुरंत नुकसान का खतरा',[],[]],
+ urgent_sudden:['Sudden severe pain or sudden weakness','अचानक तेज दर्द या अचानक कमजोरी',[],[]]
+};
+function msRenderScreenerResult(){
+  const d=window.msScreenerData,result=document.getElementById('screenerResult');
+  if(!d||!result)return;
+  const hi=currentLang==='hi',L=(e,h)=>hi?h:e,esc=escapeHtml;
+  const level=d.level;
+  const pill={1:['bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200',L('Level 1, mild','स्तर 1, हल्का')],
+              2:['bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200',L('Level 2, moderate','स्तर 2, मध्यम')],
+              3:['bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-200',L('Level 3, severe','स्तर 3, गंभीर')]}[level];
+  const chip=(cls,t)=>'<span class="inline-block rounded-full px-3 py-1 text-xs font-medium '+cls+'">'+esc(t)+'</span>';
+  const tierCls=k=>k.indexOf('urgent_')===0?'bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-200':k.indexOf('moderate_')===0?'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200':'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200';
+  const genderTxt={female:L('female','महिला'),male:L('male','पुरुष'),other:L('other','अन्य')}[d.gender]||'';
+  const meta=d.age+' '+L('years','वर्ष')+(genderTxt?', '+genderTxt:'');
+  let html='<div class="flex items-center justify-between gap-2 mb-3"><h3 class="font-bold text-lg">'+L('Your result','आपका परिणाम')+'</h3><span class="rounded-full px-3 py-1 text-xs font-bold '+pill[0]+'">'+pill[1]+'</span></div>';
+
+  if(level===3){
+    const suicide=d.selected.indexOf('urgent_suicide')>-1;
+    const title=suicide?L('Please get support right now','कृपया अभी सहायता लें'):L('Get care now','तुरंत इलाज लें');
+    const body=suicide?L('If you may act on these thoughts, call 112 or go to an emergency department now. Stay with someone you trust. In India, Tele-MANAS is 14416.','यदि आप इन विचारों पर अमल कर सकते हैं, तो अभी 112 पर कॉल करें या आपातकालीन विभाग जाएँ। किसी भरोसेमंद व्यक्ति के साथ रहें। भारत में टेली-मानस 14416 है।')
+      :d.tempUrgent?L('A measured temperature of 40 °C or higher needs urgent medical assessment. Please don’t wait.','40 °C या उससे अधिक तापमान की तुरंत चिकित्सकीय जाँच ज़रूरी है। कृपया इंतज़ार न करें।')
+      :L('You chose a symptom that can be serious. Please don’t wait. Call 112 or go to the nearest emergency department.','आपने ऐसा लक्षण चुना है जो गंभीर हो सकता है। कृपया इंतज़ार न करें। 112 पर कॉल करें या नज़दीकी आपातकालीन विभाग जाएँ।');
+    const second=suicide
+      ?'<a href="tel:14416" class="rounded-lg border border-rose-300 dark:border-rose-700 bg-white dark:bg-slate-900 text-rose-700 dark:text-rose-200 py-2.5 text-center text-sm font-bold"><i class="fa-solid fa-phone mr-2"></i>'+L('Tele-MANAS 14416','टेली-मानस 14416')+'</a>'
+      :'<a href="https://www.google.com/maps/search/hospitals+near+me" target="_blank" rel="noopener" class="rounded-lg border border-rose-300 dark:border-rose-700 bg-white dark:bg-slate-900 text-rose-700 dark:text-rose-200 py-2.5 text-center text-sm font-bold"><i class="fa-solid fa-hospital mr-2"></i>'+L('Hospitals','अस्पताल')+'</a>';
+    html+='<div class="rounded-xl border border-rose-200 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/50 p-4 mb-3"><div class="flex items-center gap-2 text-rose-800 dark:text-rose-200 font-bold"><i class="fa-solid fa-triangle-exclamation"></i><span>'+title+'</span></div><p class="text-sm text-rose-800 dark:text-rose-200 mt-1 mb-3">'+body+'</p><div class="grid grid-cols-2 gap-2"><a href="tel:112" class="rounded-lg bg-rose-600 hover:bg-rose-700 text-white py-2.5 text-center text-sm font-bold"><i class="fa-solid fa-phone-volume mr-2"></i>'+L('Call 112','112 पर कॉल करें')+'</a>'+second+'</div></div>';
+  }
+
+  let card='<div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-4 mb-3">';
+  card+='<p class="text-xs text-slate-600 dark:text-slate-300 mb-2">'+L('Your answers','आपके उत्तर')+': '+esc(meta)+'</p><div class="flex flex-wrap gap-2 mb-3">';
+  d.selected.forEach(k=>{const s=MS_SYM[k];card+=chip(tierCls(k),s?(hi?s[1]:s[0]):k);});
+  if(d.tempShown!==null)card+=chip(d.tempC>=38?'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200':'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100',L('Temperature','तापमान')+': '+d.tempShown+' °'+d.unit);
+  card+='</div>';
+  if(level<3&&d.causes.length){
+    card+='<p class="text-xs text-slate-600 dark:text-slate-300 mb-2">'+L('Common causes to discuss with a doctor','डॉक्टर से बात करने के लिए आम कारण')+'</p><div class="flex flex-wrap gap-2 mb-3">';
+    d.causes.forEach(c=>{card+=chip('bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-200',c);});
+    card+='</div><div class="rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 p-3 text-xs flex gap-2"><i class="fa-solid fa-circle-info mt-0.5"></i><span>'+L('This is not a diagnosis. These are general possibilities only. A doctor can tell you what is really causing your symptoms.','यह निदान नहीं है। ये केवल सामान्य संभावनाएँ हैं। आपके लक्षणों का असली कारण डॉक्टर ही बता सकते हैं।')+'</span></div>';
+  }else{
+    card+='<p class="text-xs text-slate-600 dark:text-slate-300">'+L('This is not a diagnosis.','यह निदान नहीं है।')+'</p>';
+  }
+  card+='</div>';
+  html+=card;
+
+  if(level===2)html+='<div class="rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 p-3 text-sm mb-3">'+L('Please talk to a qualified healthcare professional. See a doctor sooner if it gets worse or lasts more than a day or two.','कृपया किसी योग्य स्वास्थ्य पेशेवर से बात करें। यदि स्थिति बिगड़े या एक-दो दिन से ज़्यादा रहे, तो जल्दी डॉक्टर को दिखाएँ।')+'</div>';
+  if(level===1)html+='<p class="text-sm text-slate-700 dark:text-slate-200 mb-3">'+L('Rest, drink fluids if appropriate, and monitor how you feel. If symptoms persist, worsen, or concern you, contact a healthcare professional.','आराम करें, ज़रूरत हो तो तरल पदार्थ लें, और अपनी स्थिति पर नज़र रखें। यदि लक्षण बने रहें, बढ़ें या चिंता हो, तो स्वास्थ्य पेशेवर से संपर्क करें।')+'</p>';
+
+  const sub=level===2?L('Hospitals near me, emergency contact','मेरे पास के अस्पताल, आपातकालीन संपर्क'):level===3?L('Ambulance, emergency contact','एम्बुलेंस, आपातकालीन संपर्क'):'';
+  const rowCls=level===1?'border border-slate-300 dark:border-slate-600':'border border-sky-300 dark:border-sky-700 bg-sky-50 dark:bg-sky-950/40';
+  const rowTxt=level===1?'text-slate-800 dark:text-slate-100':'text-sky-800 dark:text-sky-200';
+  html+='<button type="button" onclick="switchTab(\'help\')" class="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left mb-3 '+rowCls+'"><i class="fa-solid fa-life-ring text-lg w-6 text-center '+rowTxt+'"></i><span class="flex-1"><span class="block text-sm font-bold '+rowTxt+'">'+L('Find help','मदद पाएँ')+'</span>'+(sub?'<span class="block text-xs '+rowTxt+'">'+sub+'</span>':'')+'</span><i class="fa-solid fa-chevron-right text-xs text-slate-400"></i></button>';
+
+  const withDetails=d.followups.filter(f=>f.fields.length);
+  if(withDetails.length){
+    html+='<details class="mb-3 text-sm"><summary class="cursor-pointer font-semibold">'+L('Details you shared','आपके दिए विवरण')+'</summary><ul class="list-disc pl-5 mt-2 space-y-1">';
+    withDetails.forEach(f=>{const s=MS_SYM[f.key];html+='<li><strong>'+esc(s?(hi?s[1]:s[0]):f.key)+':</strong> '+f.fields.map(esc).join('; ')+'</li>';});
+    html+='</ul></details>';
+  }
+  html+='<p class="text-xs text-slate-600 dark:text-slate-300 mb-3">'+L('This educational screener is not a diagnosis or a validated clinical risk score. It helps you organise information to discuss with a clinician.','यह शैक्षिक स्क्रीनर निदान या प्रमाणित क्लिनिकल जोखिम स्कोर नहीं है। यह आपको डॉक्टर से बात करने के लिए जानकारी व्यवस्थित करने में मदद करता है।')+'</p>';
+  html+='<div class="flex gap-2"><button type="button" onclick="goScreenerStep(2)" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-xl text-sm">'+L('Edit symptoms','लक्षण बदलें')+'</button><button type="button" onclick="clearScreener()" class="px-4 py-2 bg-primary-500 text-white rounded-xl text-sm font-semibold">'+L('Start again','फिर से शुरू करें')+'</button></div>';
+  result.innerHTML=html;
+}
+evaluateNewScreener=function(){
+  const hi=currentLang==='hi';
+  const selected=selectedScreenerSymptoms(),result=document.getElementById('screenerResult');
+  if(!selected.length){alert(hi?'कृपया वापस जाकर कम से कम एक लक्षण चुनें।':'Please go back and select at least one symptom.');return;}
+  const urgent=selected.some(x=>x.indexOf('urgent_')===0),moderate=selected.some(x=>x.indexOf('moderate_')===0);
+  const followups=selected.map(key=>({key:key,fields:Array.from(document.querySelectorAll('[name^="follow_'+key+'_"]')).map(el=>el.value).filter(Boolean)}));
+  const tempRaw=document.getElementById('scrTemp').value,unit=document.getElementById('scrTempUnit').value;
+  const tempNum=tempRaw===''?null:Number(tempRaw);
+  let level=urgent?3:moderate?2:1,tempUrgent=false,tempC=null;
+  if(tempNum!==null&&isFinite(tempNum)){
+    tempC=unit==='F'?(tempNum-32)*5/9:tempNum;
+    if(tempC>=40){level=3;tempUrgent=true;}else if(tempC>=38&&level<2){level=2;}
+  }
+  const causes=[];
+  if(level<3){
+    selected.forEach(k=>{const s=MS_SYM[k];if(!s)return;(hi?s[3]:s[2]).forEach(c=>{if(causes.indexOf(c)<0)causes.push(c);});});
+    if(tempC!==null&&tempC>=38){const v=hi?'वायरल संक्रमण':'Viral infection';if(causes.indexOf(v)<0)causes.push(v);}
+  }
+  window.msScreenerData={selected:selected,followups:followups,level:level,tempUrgent:tempUrgent,tempC:tempC,tempShown:tempNum!==null&&isFinite(tempNum)?tempRaw:null,unit:unit,
+    age:document.getElementById('scrAge').value,gender:document.getElementById('scrGender').value,causes:causes.slice(0,6)};
+  msRenderScreenerResult();
+  result.classList.remove('hidden');
+  result.scrollIntoView({behavior:'smooth',block:'start'});
+};
+(function(){
+  const prev=msApplyFullLanguage;
+  msApplyFullLanguage=function(){
+    prev();
+    const r=document.getElementById('screenerResult');
+    if(window.msScreenerData&&r&&!r.classList.contains('hidden')){
+      const d=window.msScreenerData;
+      const hi=currentLang==='hi';
+      d.causes=[];
+      if(d.level<3){
+        d.selected.forEach(k=>{const s=MS_SYM[k];if(!s)return;(hi?s[3]:s[2]).forEach(c=>{if(d.causes.indexOf(c)<0)d.causes.push(c);});});
+        if(d.tempC!==null&&d.tempC>=38){const v=hi?'वायरल संक्रमण':'Viral infection';if(d.causes.indexOf(v)<0)d.causes.push(v);}
+        d.causes=d.causes.slice(0,6);
+      }
+      msRenderScreenerResult();
+    }
+  };
+})();
+// ---- Emergency box shown under the comfort message ----
+function msCrisisBoxHtml(){
+  const hi=currentLang==='hi',L=(e,h)=>hi?h:e;
+  const btn='block rounded-lg border border-rose-300 dark:border-rose-700 bg-white dark:bg-slate-900 text-rose-700 dark:text-rose-200 py-2 px-2 text-center text-xs font-bold';
+  return '<div class="mt-3 rounded-xl border border-rose-200 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/50 p-3">'
+   +'<div class="flex items-center gap-2 text-rose-800 dark:text-rose-200 font-bold text-sm mb-2"><i class="fa-solid fa-triangle-exclamation"></i><span>'+L('Get help now','अभी मदद लें')+'</span></div>'
+   +'<a href="tel:112" class="block rounded-lg bg-rose-600 hover:bg-rose-700 text-white py-2.5 text-center text-sm font-bold mb-2"><i class="fa-solid fa-phone-volume mr-2"></i>'+L('Call 112','112 पर कॉल करें')+'</a>'
+   +'<div class="grid grid-cols-2 gap-2 mb-2">'
+   +'<a href="https://www.google.com/maps/search/psychiatrist+near+me" target="_blank" rel="noopener" class="'+btn+'">'+L('Mental health help near me','मेरे पास मानसिक स्वास्थ्य सहायता')+'</a>'
+   +'<a href="https://www.google.com/maps/search/hospitals+near+me" target="_blank" rel="noopener" class="'+btn+'">'+L('Hospitals near me','मेरे पास के अस्पताल')+'</a>'
+   +'</div>'
+   +'<p class="text-xs text-rose-800 dark:text-rose-200">'+L('I’m an AI and can’t send help myself.','मैं एक AI हूँ और खुद मदद नहीं भेज सकता।')+'</p></div>';
+}
+const msOldStartNewChat=startNewChat;
+startNewChat=function(){msConversation=[];if(typeof msOldStartNewChat==='function')msOldStartNewChat();};
+</script>
+
+</body>
+</html>
